@@ -1,0 +1,172 @@
+Sample-id,Node,Region,Type,From,To,Most_similar_known cluster,Similarity %,cluster
+CA_14_polish,NODE_5_length_14706_cov_19.727210_pilon_pilon_pilon_pilon,Region&nbsp5.1,NI-siderophore,1,14299,staphyloferrin B,91,Other
+CA_14_polish,NODE_209_length_3155_cov_10.500661_pilon_pilon_pilon_pilon,Region&nbsp209.1,NI-siderophore,1,3155,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_14_polish,NODE_250_length_2817_cov_7.321933_pilon_pilon_pilon_pilon,Region&nbsp250.1,NI-siderophore,1,2817,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_13_polish,NODE_25_length_11453_cov_59.696627_pilon_pilon_pilon_pilon,Region&nbsp25.1,NI-siderophore,1,11453,staphyloferrin B,75,Other
+CA_13_polish,NODE_220_length_3470_cov_10.812743_pilon_pilon_pilon_pilon,Region&nbsp220.1,NI-siderophore,1,3470,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_13_polish,NODE_385_length_2088_cov_20.084651_pilon_pilon_pilon_pilon,Region&nbsp385.1,NI-siderophore,1,2088,,,
+CA_25_polish,NODE_45_length_14728_cov_50.093144_pilon_pilon_pilon_pilon,Region&nbsp45.1,NI-siderophore,405,14728,staphyloferrin B,91,Other
+CA_25_polish,NODE_108_length_7578_cov_14.227352_pilon_pilon_pilon_pilon,Region&nbsp108.1,NI-siderophore,1,7578,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_25_polish,NODE_316_length_1982_cov_34.761725_pilon_pilon_pilon_pilon,Region&nbsp316.1,NI-siderophore,1,1982,,,
+CA_115_polish,NODE_3_length_28675_cov_9.144949_pilon_pilon_pilon_pilon,Region&nbsp3.1,NI-siderophore,11795,28283,staphyloferrin B,91,Other
+CA_115_polish,NODE_117_length_5579_cov_4.337307_pilon_pilon_pilon_pilon,Region&nbsp117.1,NI-siderophore,1,5579,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_112_polish,NODE_3_length_14958_cov_13.506102_pilon_pilon_pilon_pilon,Region&nbsp3.1,NI-siderophore,299,14958,staphyloferrin B,91,Other
+CA_112_polish,NODE_230_length_2856_cov_4.235531_pilon_pilon_pilon_pilon,Region&nbsp230.1,NI-siderophore,1,2856,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_112_polish,NODE_281_length_2504_cov_4.079512_pilon_pilon_pilon_pilon,Region&nbsp281.1,NI-siderophore,1,2504,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_101_polish,NODE_2_length_12174_cov_7.445385_pilon_pilon_pilon_pilon,Region&nbsp2.1,NI-siderophore,1,12174,staphyloferrin B,75,Other
+CA_101_polish,NODE_170_length_3083_cov_2.102842_pilon_pilon_pilon_pilon,Region&nbsp170.1,NI-siderophore,1,3083,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_101_polish,NODE_388_length_1865_cov_4.037975_pilon_pilon_pilon_pilon,Region&nbsp388.1,NI-siderophore,1,1865,,,
+CA_104_polish,NODE_13_length_19893_cov_9.881311_pilon_pilon_pilon_pilon,Region&nbsp13.1,NI-siderophore,338,16826,staphyloferrin B,91,Other
+CA_104_polish,NODE_61_length_11248_cov_5.759554_pilon_pilon_pilon_pilon,Region&nbsp61.1,NI-siderophore,1276,11248,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_105_polish,NODE_6_length_20494_cov_12.821918_pilon_pilon_pilon_pilon,Region&nbsp6.1,NI-siderophore,563,17051,staphyloferrin B,91,Other
+CA_105_polish,NODE_98_length_6463_cov_5.028409_pilon_pilon_pilon_pilon,Region&nbsp98.1,NI-siderophore,1,6463,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_96_polish,NODE_21_length_14809_cov_21.033579_pilon_pilon_pilon_pilon,Region&nbsp21.1,NI-siderophore,405,14809,staphyloferrin B,91,Other
+CA_96_polish,NODE_117_length_6351_cov_9.419184_pilon_pilon_pilon_pilon,Region&nbsp117.1,NI-siderophore,1,6351,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_96_polish,NODE_388_length_1990_cov_18.310252_pilon_pilon_pilon_pilon,Region&nbsp388.1,NI-siderophore,1,1990,,,
+CA_108_polish,NODE_8_length_11415_cov_3.436127_pilon_pilon_pilon_pilon,Region&nbsp8.1,NI-siderophore,1,11415,staphyloferrin B,75,Other
+CA_108_polish,NODE_164_length_3323_cov_1.307572_pilon_pilon_pilon_pilon,Region&nbsp164.1,NI-siderophore,1,3323,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_108_polish,NODE_184_length_3150_cov_2.101555_pilon_pilon_pilon_pilon,Region&nbsp184.1,NI-siderophore,1,3150,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_107_polish,NODE_34_length_7618_cov_2.777036_pilon_pilon_pilon_pilon,Region&nbsp34.1,NI-siderophore,1,7618,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_107_polish,NODE_53_length_5816_cov_7.793988_pilon_pilon_pilon_pilon,Region&nbsp53.1,NI-siderophore,1,5816,staphyloferrin B,41,Other
+CA_107_polish,NODE_61_length_5531_cov_9.141377_pilon_pilon_pilon_pilon,Region&nbsp61.1,NI-siderophore,1,5531,staphyloferrin B,41,Other
+CA_107_polish,NODE_638_length_1214_cov_7.669733_pilon_pilon_pilon_pilon,Region&nbsp638.1,NI-siderophore,1,1214,staphyloferrin B,16,Other
+CA_94_pilosh,NODE_5_length_12486_cov_23.800550_pilon_pilon_pilon_pilon,Region&nbsp5.1,NI-siderophore,1,12486,staphyloferrin B,83,Other
+CA_94_pilosh,NODE_66_length_4852_cov_7.447196_pilon_pilon_pilon_pilon,Region&nbsp66.1,NI-siderophore,1,4852,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_95_polish,NODE_9_length_71406_cov_19.870846_pilon_pilon_pilon_pilon,Region&nbsp9.1,NI-siderophore,54535,71023,staphyloferrin B,91,Other
+CA_95_polish,NODE_25_length_41299_cov_16.927184_pilon_pilon_pilon_pilon,Region&nbsp25.1,NI-siderophore,16655,31670,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_92_pilosh,NODE_1_length_237027_cov_43.880300_pilon_pilon_pilon_pilon,Region&nbsp1.1,NI-siderophore,9811,24826,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_92_pilosh,NODE_12_length_100004_cov_51.608809_pilon_pilon_pilon_pilon,Region&nbsp12.2,NI-siderophore,82849,99337,staphyloferrin B,91,Other
+CA_90_pilosh,NODE_3_length_14636_cov_23.656558_pilon_pilon_pilon_pilon,Region&nbsp3.1,NI-siderophore,338,14636,staphyloferrin B,91,Other
+CA_90_pilosh,NODE_227_length_2898_cov_7.797185_pilon_pilon_pilon_pilon,Region&nbsp227.1,NI-siderophore,1,2898,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_90_pilosh,NODE_359_length_2040_cov_10.869838_pilon_pilon_pilon_pilon,Region&nbsp359.1,NI-siderophore,1,2040,,,
+CA_93_pilosh,NODE_15_length_11483_cov_34.155248_pilon_pilon_pilon_pilon,Region&nbsp15.1,NI-siderophore,1,11483,staphyloferrin B,75,Other
+CA_93_pilosh,NODE_50_length_7464_cov_8.118850_pilon_pilon_pilon_pilon,Region&nbsp50.1,NI-siderophore,1,7464,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_93_pilosh,NODE_361_length_2291_cov_17.500924_pilon_pilon_pilon_pilon,Region&nbsp361.1,NI-siderophore,1,2291,,,
+CA_74_pilosh,NODE_3_length_14877_cov_9.711390_pilon_pilon_pilon_pilon,Region&nbsp3.1,NI-siderophore,1,14474,staphyloferrin B,91,Other
+CA_74_pilosh,NODE_279_length_2280_cov_6.254993_pilon_pilon_pilon_pilon,Region&nbsp279.1,NI-siderophore,1,2280,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_74_pilosh,NODE_495_length_1562_cov_8.206969_pilon_pilon_pilon_pilon,Region&nbsp495.1,NI-siderophore,1,1562,,,
+CA_89_pilosh,NODE_23_length_14737_cov_44.395893_pilon_pilon_pilon_pilon,Region&nbsp23.1,NI-siderophore,1,14286,staphyloferrin B,91,Other
+CA_89_pilosh,NODE_67_length_9568_cov_17.979663_pilon_pilon_pilon_pilon,Region&nbsp67.1,NI-siderophore,1,9568,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_86_pilosh,NODE_8_length_11726_cov_14.607466_pilon_pilon_pilon_pilon,Region&nbsp8.1,NI-siderophore,1,11499,staphyloferrin B,75,Other
+CA_86_pilosh,NODE_448_length_2832_cov_8.313863_pilon_pilon_pilon_pilon,Region&nbsp448.1,NI-siderophore,1,2832,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_86_pilosh,NODE_861_length_1916_cov_11.823924_pilon_pilon_pilon_pilon,Region&nbsp861.1,NI-siderophore,1,1916,,,
+CA_88_pilosh,NODE_9_length_14749_cov_47.270756_pilon_pilon_pilon_pilon,Region&nbsp9.1,NI-siderophore,393,14749,staphyloferrin B,91,Other
+CA_88_pilosh,NODE_186_length_3974_cov_13.819600_pilon_pilon_pilon_pilon,Region&nbsp186.1,NI-siderophore,1,3974,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_88_pilosh,NODE_410_length_1955_cov_22.451313_pilon_pilon_pilon_pilon,Region&nbsp410.1,NI-siderophore,1,1955,,,
+CA_78_pilosh,NODE_6_length_12999_cov_21.454630_pilon_pilon_pilon_pilon,Region&nbsp6.1,NI-siderophore,1,12999,staphyloferrin B,83,Other
+CA_78_pilosh,NODE_223_length_2922_cov_6.981038_pilon_pilon_pilon_pilon,Region&nbsp223.1,NI-siderophore,1,2922,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_78_pilosh,NODE_350_length_2180_cov_9.189479_pilon_pilon_pilon_pilon,Region&nbsp350.1,NI-siderophore,1,2180,,,
+CA_76_pilosh,NODE_7_length_14727_cov_14.438973_pilon_pilon_pilon_pilon,Region&nbsp7.1,NI-siderophore,1,14316,staphyloferrin B,91,Other
+CA_76_pilosh,NODE_232_length_3250_cov_7.382645_pilon_pilon_pilon_pilon,Region&nbsp232.1,NI-siderophore,1,3250,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_76_pilosh,NODE_289_length_2764_cov_7.647706_pilon_pilon_pilon_pilon,Region&nbsp289.1,NI-siderophore,1,2764,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_70_pilosh,NODE_37_length_5267_cov_10.319650_pilon_pilon_pilon_pilon,Region&nbsp37.1,NI-siderophore,1,5040,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_70_pilosh,NODE_108_length_3586_cov_33.615207_pilon_pilon_pilon_pilon,Region&nbsp108.1,NI-siderophore,1,3656,staphyloferrin B,33,Other
+CA_63_pilosh,NODE_42_length_15779_cov_26.417774_pilon_pilon_pilon_pilon,Region&nbsp42.1,NI-siderophore,2162,15779,staphyloferrin B,75,Other
+CA_63_pilosh,NODE_136_length_6417_cov_18.298887_pilon_pilon_pilon_pilon,Region&nbsp136.1,NI-siderophore,1,6417,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_60_pilosh,NODE_1_length_41459_cov_7.602342_pilon_pilon_pilon_pilon,Region&nbsp1.1,NI-siderophore,18846,35334,staphyloferrin B,91,Other
+CA_60_pilosh,NODE_52_length_10378_cov_6.716320_pilon_pilon_pilon_pilon,Region&nbsp52.1,NI-siderophore,1,10378,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_68_pilosh,NODE_95_length_4136_cov_6.062110_pilon_pilon_pilon_pilon,Region&nbsp95.1,NI-siderophore,1,4136,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_68_pilosh,NODE_130_length_3510_cov_15.377771_pilon_pilon_pilon_pilon,Region&nbsp130.1,NI-siderophore,1,3510,staphyloferrin B,25,Other
+CA_68_pilosh,NODE_460_length_1788_cov_17.650813_pilon_pilon_pilon_pilon,Region&nbsp460.1,NI-siderophore,1,1788,staphyloferrin B,16,Other
+CA_68_pilosh,NODE_838_length_1155_cov_8.479572_pilon_pilon_pilon_pilon,Region&nbsp838.1,NI-siderophore,1,1155,,,
+CA_64_pilosh,NODE_2_length_157080_cov_29.219352_pilon_pilon_pilon_pilon,Region&nbsp2.1,NI-siderophore,52683,69171,staphyloferrin B,91,Other
+CA_64_pilosh,NODE_25_length_47521_cov_21.486918_pilon_pilon_pilon_pilon,Region&nbsp25.1,NI-siderophore,22822,37837,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_62_pilosh,NODE_28_length_30535_cov_20.938700_pilon_pilon_pilon_pilon,Region&nbsp28.1,NI-siderophore,4198,19213,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_62_pilosh,NODE_44_length_22519_cov_29.068596_pilon_pilon_pilon_pilon,Region&nbsp44.1,NI-siderophore,5609,22097,staphyloferrin B,91,Other
+CA_66_pilosh,NODE_5_length_26353_cov_19.312019_pilon_pilon_pilon_pilon,Region&nbsp5.1,NI-siderophore,5088,21576,staphyloferrin B,91,Other
+CA_66_pilosh,NODE_220_length_4088_cov_11.334259_pilon_pilon_pilon_pilon,Region&nbsp220.1,NI-siderophore,1,4088,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_66_pilosh,NODE_327_length_2392_cov_9.087859_pilon_pilon_pilon_pilon,Region&nbsp327.1,NI-siderophore,1,2392,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_57_pilosh,NODE_21_length_14743_cov_21.579639_pilon_pilon_pilon_pilon,Region&nbsp21.1,NI-siderophore,375,14743,staphyloferrin B,91,Other
+CA_57_pilosh,NODE_58_length_9545_cov_15.879061_pilon_pilon_pilon_pilon,Region&nbsp58.1,NI-siderophore,1,9545,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_58_pilosh,NODE_6_length_11347_cov_27.057576_pilon_pilon_pilon_pilon,Region&nbsp6.1,NI-siderophore,1,11347,staphyloferrin B,75,Other
+CA_58_pilosh,NODE_52_length_6075_cov_9.316913_pilon_pilon_pilon_pilon,Region&nbsp52.1,NI-siderophore,1,6075,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_55_pilosh,NODE_4_length_71716_cov_11.232047_pilon_pilon_pilon_pilon,Region&nbsp4.1,NI-siderophore,19692,36180,staphyloferrin B,91,Other
+CA_55_pilosh,NODE_54_length_15218_cov_9.047512_pilon_pilon_pilon_pilon,Region&nbsp54.1,NI-siderophore,1,11021,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_59_pilosh,NODE_8_length_38768_cov_16.785642_pilon_pilon_pilon_pilon,Region&nbsp8.1,NI-siderophore,423,16911,staphyloferrin B,91,Other
+CA_59_pilosh,NODE_53_length_12893_cov_13.811922_pilon_pilon_pilon_pilon,Region&nbsp53.1,NI-siderophore,1,12893,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_185_polish,NODE_22_length_13835_cov_13.922162_pilon_pilon_pilon_pilon,Region&nbsp22.1,NI-siderophore,216,13835,staphyloferrin B,75,Other
+CA_185_polish,NODE_97_length_6120_cov_4.313199_pilon_pilon_pilon_pilon,Region&nbsp97.1,NI-siderophore,1,6120,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_168_polish,NODE_19_length_12508_cov_9.207495_pilon_pilon_pilon_pilon,Region&nbsp19.1,NI-siderophore,1,12508,staphyloferrin B,83,Other
+CA_168_polish,NODE_71_length_7000_cov_3.331733_pilon_pilon_pilon_pilon,Region&nbsp71.1,NI-siderophore,1,7000,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_177_polish,NODE_5_length_14605_cov_5.645600_pilon_pilon_pilon_pilon,Region&nbsp5.1,NI-siderophore,1,14231,staphyloferrin B,91,Other
+CA_177_polish,NODE_73_length_6156_cov_3.175485_pilon_pilon_pilon_pilon,Region&nbsp73.1,NI-siderophore,1,6156,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_163_polish,NODE_7_length_20723_cov_4.580938_pilon_pilon_pilon_pilon,Region&nbsp7.1,NI-siderophore,3613,20101,staphyloferrin B,91,Other
+CA_163_polish,NODE_52_length_8713_cov_3.475658_pilon_pilon_pilon_pilon,Region&nbsp52.1,NI-siderophore,1,8713,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_167_polish,NODE_12_length_29421_cov_6.664744_pilon_pilon_pilon_pilon,Region&nbsp12.1,NI-siderophore,14697,29421,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_167_polish,NODE_19_length_21882_cov_4.413882_pilon_pilon_pilon_pilon,Region&nbsp19.1,NI-siderophore,393,16881,staphyloferrin B,91,Other
+CA_165_polish,NODE_14_length_27360_cov_16.541696_pilon_pilon_pilon_pilon,Region&nbsp14.1,NI-siderophore,5212,21700,staphyloferrin B,91,Other
+CA_165_polish,NODE_16_length_26117_cov_10.101693_pilon_pilon_pilon_pilon,Region&nbsp16.1,NI-siderophore,1181,16196,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_164_polish,NODE_8_length_36053_cov_11.174024_pilon_pilon_pilon_pilon,Region&nbsp8.1,NI-siderophore,16830,31845,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_164_polish,NODE_26_length_23255_cov_17.841015_pilon_pilon_pilon_pilon,Region&nbsp26.1,NI-siderophore,6311,22799,staphyloferrin B,91,Other
+CA_158_polish,NODE_10_length_11369_cov_16.848692_pilon_pilon_pilon_pilon,Region&nbsp10.1,NI-siderophore,1,11369,staphyloferrin B,75,Other
+CA_158_polish,NODE_195_length_3276_cov_4.946015_pilon_pilon_pilon_pilon,Region&nbsp195.1,NI-siderophore,1,3276,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_158_polish,NODE_768_length_1009_cov_5.768707_pilon_pilon_pilon_pilon,Region&nbsp768.1,NI-siderophore,1,1009,,,
+CA_153_polish,NODE_2_length_33904_cov_14.433283_pilon_pilon_pilon_pilon,Region&nbsp2.1,NI-siderophore,1,13599,staphyloferrin B,75,Other
+CA_153_polish,NODE_67_length_8672_cov_7.822586_pilon_pilon_pilon_pilon,Region&nbsp67.1,NI-siderophore,1,8672,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_162_polish,NODE_6_length_17240_cov_17.693040_pilon_pilon_pilon_pilon,Region&nbsp6.1,NI-siderophore,284,16772,staphyloferrin B,91,Other
+CA_162_polish,NODE_77_length_5970_cov_5.786925_pilon_pilon_pilon_pilon,Region&nbsp77.1,NI-siderophore,1,5970,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_156_polish,NODE_3_length_25253_cov_8.828783_pilon_pilon_pilon_pilon,Region&nbsp3.1,NI-siderophore,5216,21704,staphyloferrin B,91,Other
+CA_156_polish,NODE_116_length_5022_cov_3.355056_pilon_pilon_pilon_pilon,Region&nbsp116.1,NI-siderophore,1,5022,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_156_polish,NODE_454_length_1856_cov_4.651243_pilon_pilon_pilon_pilon,Region&nbsp454.1,NI-siderophore,1,1856,,,
+CA_155_polish,NODE_11_length_27737_cov_17.972003_pilon_pilon_pilon_pilon,Region&nbsp11.1,NI-siderophore,469,16957,staphyloferrin B,91,Other
+CA_155_polish,NODE_60_length_12220_cov_7.336558_pilon_pilon_pilon_pilon,Region&nbsp60.1,NI-siderophore,1,7997,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_155_polish,NODE_214_length_3491_cov_8.294293_pilon_pilon_pilon_pilon,Region&nbsp214.1,NI-siderophore,1,3491,,,
+CA_151_polish,NODE_2_length_38628_cov_12.907041_pilon_pilon_pilon_pilon,Region&nbsp2.1,NI-siderophore,408,16896,staphyloferrin B,91,Other
+CA_151_polish,NODE_234_length_3400_cov_6.707302_pilon_pilon_pilon_pilon,Region&nbsp234.1,NI-siderophore,1,3400,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_151_polish,NODE_291_length_2693_cov_8.077942_pilon_pilon_pilon_pilon,Region&nbsp291.1,NI-siderophore,1,2693,,,
+CA_150_polish,NODE_3_length_23019_cov_13.515158_pilon_pilon_pilon_pilon,Region&nbsp3.1,NI-siderophore,393,16881,staphyloferrin B,91,Other
+CA_150_polish,NODE_120_length_5383_cov_5.662861_pilon_pilon_pilon_pilon,Region&nbsp120.1,NI-siderophore,1,5383,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_150_polish,NODE_153_length_4615_cov_5.446747_pilon_pilon_pilon_pilon,Region&nbsp153.1,NI-siderophore,1,4615,,,
+CA_152_polish,NODE_19_length_14701_cov_26.981680_pilon_pilon_pilon_pilon,Region&nbsp19.1,NI-siderophore,413,14701,staphyloferrin B,91,Other
+CA_152_polish,NODE_223_length_3569_cov_7.350959_pilon_pilon_pilon_pilon,Region&nbsp223.1,NI-siderophore,1,3569,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_152_polish,NODE_317_length_2614_cov_11.385203_pilon_pilon_pilon_pilon,Region&nbsp317.1,NI-siderophore,1,2614,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_154_polish,NODE_9_length_14628_cov_7.732018_pilon_pilon_pilon_pilon,Region&nbsp9.1,NI-siderophore,282,14628,staphyloferrin B,91,Other
+CA_154_polish,NODE_302_length_2690_cov_3.627780_pilon_pilon_pilon_pilon,Region&nbsp302.1,NI-siderophore,1,2690,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_154_polish,NODE_385_length_2083_cov_5.060838_pilon_pilon_pilon_pilon,Region&nbsp385.1,NI-siderophore,1,2083,,,
+CA_148_polish,NODE_6_length_12648_cov_11.122914_pilon_pilon_pilon_pilon,Region&nbsp6.1,NI-siderophore,1,12648,staphyloferrin B,83,Other
+CA_148_polish,NODE_226_length_2847_cov_4.116912_pilon_pilon_pilon_pilon,Region&nbsp226.1,NI-siderophore,1,2847,,,
+CA_148_polish,NODE_270_length_2544_cov_4.702524_pilon_pilon_pilon_pilon,Region&nbsp270.1,NI-siderophore,1,2544,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_142_polish,NODE_15_length_13280_cov_11.415419_pilon_pilon_pilon_pilon,Region&nbsp15.1,NI-siderophore,1,12795,staphyloferrin B,83,Other
+CA_142_polish,NODE_77_length_6376_cov_4.746679_pilon_pilon_pilon_pilon,Region&nbsp77.1,NI-siderophore,1,6376,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_146_polish,NODE_18_length_8439_cov_14.036092_pilon_pilon_pilon_pilon,Region&nbsp18.1,NI-siderophore,423,8439,staphyloferrin B,50,Other
+CA_146_polish,NODE_39_length_6284_cov_16.307780_pilon_pilon_pilon_pilon,Region&nbsp39.1,NI-siderophore,1,6284,staphyloferrin B,41,Other
+CA_146_polish,NODE_238_length_2705_cov_2.925524_pilon_pilon_pilon_pilon,Region&nbsp238.1,NI-siderophore,1,2705,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_146_polish,NODE_737_length_1106_cov_3.886619_pilon_pilon_pilon_pilon,Region&nbsp737.1,NI-siderophore,1,1106,,,
+CA_143_polish,NODE_5_length_14688_cov_13.318522_pilon_pilon_pilon_pilon,Region&nbsp5.1,NI-siderophore,391,14688,staphyloferrin B,91,Other
+CA_143_polish,NODE_225_length_3504_cov_4.142138_pilon_pilon_pilon_pilon,Region&nbsp225.1,NI-siderophore,1,3504,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_143_polish,NODE_341_length_2360_cov_4.261532_pilon_pilon_pilon_pilon,Region&nbsp341.1,NI-siderophore,1,2360,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_138_polish,NODE_5_length_19806_cov_11.943544_pilon_pilon_pilon_pilon,Region&nbsp5.1,NI-siderophore,472,16960,staphyloferrin B,91,Other
+CA_138_polish,NODE_184_length_3739_cov_5.453363_pilon_pilon_pilon_pilon,Region&nbsp184.1,NI-siderophore,1,3740,,,
+CA_138_polish,NODE_338_length_2352_cov_5.252135_pilon_pilon_pilon_pilon,Region&nbsp338.1,NI-siderophore,1,2352,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_141_polish,NODE_9_length_14753_cov_3.477643_pilon_pilon_pilon_pilon,Region&nbsp9.1,NI-siderophore,382,14753,staphyloferrin B,91,Other
+CA_141_polish,NODE_233_length_3392_cov_2.188974_pilon_pilon_pilon_pilon,Region&nbsp233.1,NI-siderophore,1,3392,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_141_polish,NODE_486_length_1843_cov_2.526224_pilon_pilon_pilon_pilon,Region&nbsp486.1,NI-siderophore,1,1843,,,
+CA_132_polish,NODE_9_length_11844_cov_12.863873_pilon_pilon_pilon_pilon,Region&nbsp9.1,NI-siderophore,1,11844,staphyloferrin B,75,Other
+CA_132_polish,NODE_199_length_3310_cov_3.597549_pilon_pilon_pilon_pilon,Region&nbsp199.1,NI-siderophore,1,3310,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_132_polish,NODE_349_length_2179_cov_4.860136_pilon_pilon_pilon_pilon,Region&nbsp349.1,NI-siderophore,1,2179,,,
+CA_140_polish,NODE_17_length_22946_cov_13.782111_pilon_pilon_pilon_pilon,Region&nbsp17.1,NI-siderophore,306,16794,staphyloferrin B,91,Other
+CA_140_polish,NODE_27_length_19626_cov_6.592667_pilon_pilon_pilon_pilon,Region&nbsp27.1,NI-siderophore,1,10043,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_131_polish,NODE_6_length_14832_cov_13.267868_pilon_pilon_pilon_pilon,Region&nbsp6.1,NI-siderophore,457,14832,staphyloferrin B,91,Other
+CA_131_polish,NODE_118_length_4711_cov_4.266361_pilon_pilon_pilon_pilon,Region&nbsp118.1,NI-siderophore,1,4711,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_128_polish,NODE_38_length_13113_cov_18.322886_pilon_pilon_pilon_pilon,Region&nbsp38.1,NI-siderophore,1,13113,staphyloferrin B,83,Other
+CA_128_polish,NODE_128_length_6005_cov_7.617217_pilon_pilon_pilon_pilon,Region&nbsp128.1,NI-siderophore,1,6005,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_129_polish,NODE_37_length_9874_cov_5.036729_pilon_pilon_pilon_pilon,Region&nbsp37.1,NI-siderophore,393,9874,staphyloferrin B,58,Other
+CA_129_polish,NODE_130_length_4981_cov_5.971158_pilon_pilon_pilon_pilon,Region&nbsp130.1,NI-siderophore,1,4981,staphyloferrin B,41,Other
+CA_129_polish,NODE_171_length_4073_cov_2.521794_pilon_pilon_pilon_pilon,Region&nbsp171.1,NI-siderophore,1,4073,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_129_polish,NODE_204_length_3577_cov_3.373913_pilon_pilon_pilon_pilon,Region&nbsp204.1,NI-siderophore,1,3577,,,
+CA_130_polish,NODE_16_length_14775_cov_12.281267_pilon_pilon_pilon_pilon,Region&nbsp16.1,NI-siderophore,1,14379,staphyloferrin B,91,Other
+CA_130_polish,NODE_30_length_11260_cov_4.836971_pilon_pilon_pilon_pilon,Region&nbsp30.1,NI-siderophore,4142,11260,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_130_polish,NODE_396_length_2174_cov_5.658036_pilon_pilon_pilon_pilon,Region&nbsp396.1,NI-siderophore,1,2174,,,
+CA_127_polish,NODE_6_length_17709_cov_6.119554_pilon_pilon_pilon_pilon,Region&nbsp6.1,NI-siderophore,3983,17709,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_127_polish,NODE_10_length_15766_cov_17.866424_pilon_pilon_pilon_pilon,Region&nbsp10.1,NI-siderophore,795,15766,staphyloferrin B,91,Other
+CA_117_polish,NODE_2_length_22937_cov_4.130469_pilon_pilon_pilon_pilon,Region&nbsp2.1,NI-siderophore,1364,17852,staphyloferrin B,91,Other
+CA_117_polish,NODE_151_length_4560_cov_2.034288_pilon_pilon_pilon_pilon,Region&nbsp151.1,NI-siderophore,1,4560,staphyloferrin A,100,Other:Non-NRP siderophore
+CA_117_polish,NODE_470_length_1817_cov_3.490533_pilon_pilon_pilon_pilon,Region&nbsp470.1,NI-siderophore,1,1817,,,
+CA_118_polish,NODE_1_length_15385_cov_9.042207_pilon_pilon_pilon_pilon,Region&nbsp1.1,NI-siderophore,1,14927,staphyloferrin B,91,Other
+CA_118_polish,NODE_351_length_2088_cov_2.841407_pilon_pilon_pilon_pilon,Region&nbsp351.1,NI-siderophore,1,2088,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_118_polish,NODE_695_length_1198_cov_5.172736_pilon_pilon_pilon_pilon,Region&nbsp695.1,NI-siderophore,1,1198,,,
+CA_120_polish,NODE_7_length_12444_cov_7.508890_pilon_pilon_pilon_pilon,Region&nbsp7.1,NI-siderophore,1,12444,staphyloferrin B,83,Other
+CA_120_polish,NODE_43_length_6701_cov_2.995132_pilon_pilon_pilon_pilon,Region&nbsp43.1,NI-siderophore,1,6701,staphyloferrin A,75,Other:Non-NRP siderophore
+CA_120_polish,NODE_395_length_1954_cov_2.978654_pilon_pilon_pilon_pilon,Region&nbsp395.1,NI-siderophore,1,1954,staphyloferrin A,50,Other:Non-NRP siderophore
+CA_119_polish,NODE_5_length_14854_cov_8.621919_pilon_pilon_pilon_pilon,Region&nbsp5.1,NI-siderophore,471,14854,staphyloferrin B,91,Other
+CA_119_polish,NODE_29_length_7007_cov_3.205959_pilon_pilon_pilon_pilon,Region&nbsp29.1,NI-siderophore,1,7007,staphyloferrin A,100,Other:Non-NRP siderophore

@@ -1,0 +1,120 @@
+Sample-id,Node,Region,Type,From,To,Most_similar_known cluster,Similarity %,cluster
+CA_1_polish,NODE_3_length_345482_cov_29.145618_pilon_pilon_pilon_pilon,Region&nbsp3.1,NRPS,291074,336620,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_16_polish,NODE_4_length_40540_cov_33.925989_pilon_pilon_pilon_pilon,Region&nbsp4.1,NRPS,1,40034,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_14_polish,NODE_23_length_8850_cov_18.314800_pilon_pilon_pilon_pilon,Region&nbsp23.1,NRPS,1,8850,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_10_polish,NODE_5_length_14964_cov_29.080003_pilon_pilon_pilon_pilon,Region&nbsp5.1,NRPS,1,14964,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_9_polish,NODE_11_length_13570_cov_34.192145_pilon_pilon_pilon_pilon,Region&nbsp11.1,NRPS,1,13570,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_12_polish,NODE_4_length_26103_cov_30.431090_pilon_pilon_pilon_pilon,Region&nbsp4.1,NRPS,1,26103,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_11_polish,NODE_6_length_13259_cov_29.353792_pilon_pilon_pilon_pilon,Region&nbsp6.1,NRPS,1,13259,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_15_polish,NODE_11_length_13657_cov_43.908574_pilon_pilon_pilon_pilon,Region&nbsp11.1,NRPS,1,13657,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_13_polish,NODE_14_length_13607_cov_42.418843_pilon_pilon_pilon_pilon,Region&nbsp14.1,NRPS,1,13607,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_7_polish,NODE_53_length_16970_cov_35.368640_pilon_pilon_pilon_pilon,Region&nbsp53.1,NRPS,1,16970,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_3_polish,NODE_14_length_54913_cov_80.499398_pilon_pilon_pilon_pilon,Region&nbsp14.1,NRPS,1,46530,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_8_polish,NODE_7_length_13598_cov_31.167248_pilon_pilon_pilon_pilon,Region&nbsp7.1,NRPS,1,13598,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_5_polish,NODE_4_length_70541_cov_31.986693_pilon_pilon_pilon_pilon,Region&nbsp4.1,NRPS,405,47580,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_2_polish,NODE_1_length_284298_cov_54.758645_pilon_pilon_pilon_pilon,Region&nbsp1.1,NRPS,227088,274263,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_54_pilosh,NODE_18_length_13675_cov_27.538530_pilon_pilon_pilon_pilon,Region&nbsp18.1,NRPS,1,13675,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_53_pilosh,NODE_8_length_23548_cov_37.646343_pilon_pilon_pilon_pilon,Region&nbsp8.1,NRPS,1,23548,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_50_pilosh,NODE_26_length_21864_cov_9.638773_pilon_pilon_pilon_pilon,Region&nbsp26.1,NRPS,1,21864,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_52_pilosh,NODE_3_length_159883_cov_18.961804_pilon_pilon_pilon_pilon,Region&nbsp3.2,NRPS,103969,151144,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_43_pilosh,NODE_2_length_1028516_cov_85.138346_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,283163,330338,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_41_pilosh,NODE_2_length_219110_cov_51.922195_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,88061,135236,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_44_pilosh,NODE_3_length_21996_cov_6.716539_pilon_pilon_pilon_pilon,Region&nbsp3.1,NRPS,1,21996,ulbactin F/ulbactin G,28,NRP
+CA_44_pilosh,NODE_683_length_2220_cov_4.806498_pilon_pilon_pilon_pilon,Region&nbsp683.1,NRPS,1,2220,,,
+CA_42_pilosh,NODE_1_length_101160_cov_72.151693_pilon_pilon_pilon_pilon,Region&nbsp1.1,NRPS,2261,49436,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_49_pilosh,NODE_2_length_170169_cov_71.540949_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,114804,161979,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_48_pilosh,NODE_262_length_3336_cov_5.653163_pilon_pilon_pilon_pilon,Region&nbsp262.1,NRPS,1,3336,,,
+CA_47_pilosh,NODE_5_length_62413_cov_10.127091_pilon_pilon_pilon_pilon,Region&nbsp5.1,NRPS,1,43935,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_46_pilosh,NODE_1_length_170082_cov_23.684305_pilon_pilon_pilon_pilon,Region&nbsp1.1,NRPS,8202,55377,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_45_pilosh,NODE_1_length_147251_cov_16.735502_pilon_pilon_pilon_pilon,Region&nbsp1.1,NRPS,98082,145257,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_36_pilosh,NODE_2_length_173216_cov_81.428306_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,115957,163132,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_39_pilosh,NODE_10_length_86153_cov_20.236696_pilon_pilon_pilon_pilon,Region&nbsp10.1,NRPS,10088,57263,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_40_pilosh,NODE_7_length_26711_cov_41.937444_pilon_pilon_pilon_pilon,Region&nbsp7.1,NRPS,1,26711,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_35_pilosh,NODE_6_length_14263_cov_15.945600_pilon_pilon_pilon_pilon,Region&nbsp6.1,NRPS,1,14263,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_34_pilosh,NODE_33_length_9125_cov_21.570682_pilon_pilon_pilon_pilon,Region&nbsp33.1,NRPS,1,9125,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_33_pilosh,NODE_2_length_42912_cov_16.602945_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,9611,42912,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_38_pilosh,NODE_1_length_112866_cov_124.309396_pilon_pilon_pilon_pilon,Region&nbsp1.1,NRPS,65616,112791,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_32_pilosh,NODE_18_length_14988_cov_33.476819_pilon_pilon_pilon_pilon,Region&nbsp18.1,NRPS,1,14988,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_30_pilosh,NODE_2_length_255426_cov_42.292238_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,118665,165840,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_29_pilosh,NODE_1_length_865452_cov_40.088619_pilon_pilon_pilon_pilon,Region&nbsp1.1,NRPS,95715,142890,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_31_pilosh,NODE_22_length_13559_cov_31.496873_pilon_pilon_pilon_pilon,Region&nbsp22.1,NRPS,1,13559,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_25_polish,NODE_6_length_29972_cov_41.541129_pilon_pilon_pilon_pilon,Region&nbsp6.1,NRPS,1,28918,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_28_pilosh,NODE_40_length_14975_cov_42.716797_pilon_pilon_pilon_pilon,Region&nbsp40.1,NRPS,1,14975,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_24_polish,NODE_39_length_11706_cov_36.910614_pilon_pilon_pilon_pilon,Region&nbsp39.1,NRPS,1,11706,,,
+CA_24_polish,NODE_60_length_9901_cov_44.295989_pilon_pilon_pilon_pilon,Region&nbsp60.1,NRPS,1,9901,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_26_polish,NODE_7_length_26955_cov_39.390525_pilon_pilon_pilon_pilon,Region&nbsp7.1,NRPS,1,26955,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_27_polish,NODE_2_length_588254_cov_47.348906_pilon_pilon_pilon_pilon,Region&nbsp2.3,NRPS,409914,457089,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_23_polish,NODE_37_length_9097_cov_30.527648_pilon_pilon_pilon_pilon,Region&nbsp37.1,NRPS,1,9097,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_21_polish,NODE_7_length_26782_cov_26.507972_pilon_pilon_pilon_pilon,Region&nbsp7.1,NRPS,1,26782,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_20_polish,NODE_2_length_37337_cov_55.913518_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,1,37337,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_17_polish,NODE_28_length_13579_cov_49.139384_pilon_pilon_pilon_pilon,Region&nbsp28.1,NRPS,1,13579,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_18_polish,NODE_15_length_13377_cov_49.840679_pilon_pilon_pilon_pilon,Region&nbsp15.1,NRPS,1,13377,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_19_polish,NODE_22_length_14957_cov_27.296966_pilon_pilon_pilon_pilon,Region&nbsp22.1,NRPS,1,14957,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_22_polish,NODE_21_length_16975_cov_48.662987_pilon_pilon_pilon_pilon,Region&nbsp21.1,NRPS,1,16975,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_115_polish,NODE_2_length_35298_cov_8.793893_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,1,35298,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_112_polish,NODE_26_length_7809_cov_12.817756_pilon_pilon_pilon_pilon,Region&nbsp26.1,NRPS,1,7809,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_101_polish,NODE_75_length_4703_cov_7.825175_pilon_pilon_pilon_pilon,Region&nbsp75.1,NRPS,1,4703,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_101_polish,NODE_420_length_1765_cov_5.663004_pilon_pilon_pilon_pilon,Region&nbsp420.1,NRPS,1,1765,,,
+CA_101_polish,NODE_436_length_1711_cov_3.628157_pilon_pilon_pilon_pilon,Region&nbsp436.1,NRPS,1,1711,,,
+CA_104_polish,NODE_40_length_13642_cov_10.137625_pilon_pilon_pilon_pilon,Region&nbsp40.1,NRPS,1,13642,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_105_polish,NODE_2_length_25270_cov_11.100028_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,1,25270,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_96_polish,NODE_5_length_21571_cov_19.386728_pilon_pilon_pilon_pilon,Region&nbsp5.1,NRPS,1,21571,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_108_polish,NODE_2_length_13709_cov_2.675968_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,1,13709,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_107_polish,NODE_24_length_8872_cov_7.159863_pilon_pilon_pilon_pilon,Region&nbsp24.1,NRPS,1,8872,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_94_pilosh,NODE_52_length_5290_cov_23.757312_pilon_pilon_pilon_pilon,Region&nbsp52.1,NRPS,1,5290,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_94_pilosh,NODE_116_length_3738_cov_12.780116_pilon_pilon_pilon_pilon,Region&nbsp116.1,NRPS,1,3738,,,
+CA_95_polish,NODE_33_length_35809_cov_17.550221_pilon_pilon_pilon_pilon,Region&nbsp33.1,NRPS,6905,35809,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_92_pilosh,NODE_12_length_100004_cov_51.608809_pilon_pilon_pilon_pilon,Region&nbsp12.1,NRPS,4969,52144,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_90_pilosh,NODE_20_length_8794_cov_22.291681_pilon_pilon_pilon_pilon,Region&nbsp20.1,NRPS,1,8794,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_93_pilosh,NODE_8_length_14959_cov_24.887540_pilon_pilon_pilon_pilon,Region&nbsp8.1,NRPS,1,14959,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_74_pilosh,NODE_5_length_13653_cov_8.987727_pilon_pilon_pilon_pilon,Region&nbsp5.1,NRPS,1,13653,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_89_pilosh,NODE_29_length_13618_cov_42.816618_pilon_pilon_pilon_pilon,Region&nbsp29.1,NRPS,1,13618,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_86_pilosh,NODE_20_length_8989_cov_12.613293_pilon_pilon_pilon_pilon,Region&nbsp20.1,NRPS,1,8989,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_88_pilosh,NODE_29_length_10487_cov_37.069305_pilon_pilon_pilon_pilon,Region&nbsp29.1,NRPS,1,10487,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_78_pilosh,NODE_21_length_9190_cov_18.106587_pilon_pilon_pilon_pilon,Region&nbsp21.1,NRPS,1,9190,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_76_pilosh,NODE_4_length_21552_cov_13.324247_pilon_pilon_pilon_pilon,Region&nbsp4.1,NRPS,1,21552,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_70_pilosh,NODE_79_length_4079_cov_10.829453_pilon_pilon_pilon_pilon,Region&nbsp79.1,NRPS,1,4079,,,
+CA_63_pilosh,NODE_2_length_49162_cov_23.358132_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,1623,48798,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_60_pilosh,NODE_15_length_20652_cov_7.920731_pilon_pilon_pilon_pilon,Region&nbsp15.1,NRPS,1,20652,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_68_pilosh,NODE_191_length_2938_cov_16.178228_pilon_pilon_pilon_pilon,Region&nbsp191.1,NRPS,1,2938,,,
+CA_64_pilosh,NODE_2_length_157080_cov_29.219352_pilon_pilon_pilon_pilon,Region&nbsp2.2,NRPS,103900,151075,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_62_pilosh,NODE_4_length_61594_cov_26.938146_pilon_pilon_pilon_pilon,Region&nbsp4.1,NRPS,4766,51941,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_66_pilosh,NODE_82_length_9128_cov_23.283413_pilon_pilon_pilon_pilon,Region&nbsp82.1,NRPS,1,9128,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_57_pilosh,NODE_65_length_9117_cov_21.214349_pilon_pilon_pilon_pilon,Region&nbsp65.1,NRPS,1,9117,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_58_pilosh,NODE_18_length_8744_cov_23.643147_pilon_pilon_pilon_pilon,Region&nbsp18.1,NRPS,1,8744,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_55_pilosh,NODE_7_length_48308_cov_12.746186_pilon_pilon_pilon_pilon,Region&nbsp7.1,NRPS,15065,48308,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_59_pilosh,NODE_11_length_33354_cov_19.290005_pilon_pilon_pilon_pilon,Region&nbsp11.1,NRPS,1,33354,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_185_polish,NODE_3_length_22674_cov_9.717213_pilon_pilon_pilon_pilon,Region&nbsp3.1,NRPS,1,22674,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_168_polish,NODE_4_length_25264_cov_7.889605_pilon_pilon_pilon_pilon,Region&nbsp4.1,NRPS,1,25264,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_177_polish,NODE_8_length_13687_cov_5.348378_pilon_pilon_pilon_pilon,Region&nbsp8.1,NRPS,1,13687,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_163_polish,NODE_3_length_23250_cov_4.650132_pilon_pilon_pilon_pilon,Region&nbsp3.1,NRPS,1,23250,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_167_polish,NODE_5_length_39384_cov_4.409379_pilon_pilon_pilon_pilon,Region&nbsp5.1,NRPS,3896,39384,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_165_polish,NODE_20_length_25360_cov_15.848730_pilon_pilon_pilon_pilon,Region&nbsp20.1,NRPS,1,25360,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_164_polish,NODE_6_length_40254_cov_16.914571_pilon_pilon_pilon_pilon,Region&nbsp6.1,NRPS,1,40024,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_158_polish,NODE_5_length_14063_cov_12.568743_pilon_pilon_pilon_pilon,Region&nbsp5.1,NRPS,1,14063,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_153_polish,NODE_3_length_33617_cov_14.526665_pilon_pilon_pilon_pilon,Region&nbsp3.1,NRPS,1,33164,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_162_polish,NODE_170_length_3507_cov_11.934024_pilon_pilon_pilon_pilon,Region&nbsp170.1,NRPS,1,3507,,,
+CA_156_polish,NODE_1_length_29315_cov_7.252158_pilon_pilon_pilon_pilon,Region&nbsp1.1,NRPS,1,28741,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_155_polish,NODE_16_length_25751_cov_20.798509_pilon_pilon_pilon_pilon,Region&nbsp16.1,NRPS,1,25751,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_151_polish,NODE_12_length_20859_cov_12.148997_pilon_pilon_pilon_pilon,Region&nbsp12.1,NRPS,1,20859,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_150_polish,NODE_2_length_23465_cov_12.335076_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,1,23465,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_152_polish,NODE_16_length_15158_cov_20.561706_pilon_pilon_pilon_pilon,Region&nbsp16.1,NRPS,1,15158,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_154_polish,NODE_13_length_13229_cov_7.073124_pilon_pilon_pilon_pilon,Region&nbsp13.1,NRPS,1,13229,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_148_polish,NODE_55_length_5223_cov_10.594780_pilon_pilon_pilon_pilon,Region&nbsp55.1,NRPS,1,5223,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_148_polish,NODE_187_length_3102_cov_7.721681_pilon_pilon_pilon_pilon,Region&nbsp187.1,NRPS,1,3102,,,
+CA_142_polish,NODE_3_length_20149_cov_7.874488_pilon_pilon_pilon_pilon,Region&nbsp3.1,NRPS,1,20149,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_146_polish,NODE_5_length_12929_cov_10.517653_pilon_pilon_pilon_pilon,Region&nbsp5.1,NRPS,1,12929,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_143_polish,NODE_42_length_8385_cov_12.384597_pilon_pilon_pilon_pilon,Region&nbsp42.1,NRPS,1,8385,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_138_polish,NODE_10_length_14645_cov_11.126601_pilon_pilon_pilon_pilon,Region&nbsp10.1,NRPS,1,14645,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_141_polish,NODE_11_length_13719_cov_3.189965_pilon_pilon_pilon_pilon,Region&nbsp11.1,NRPS,1,13719,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_132_polish,NODE_5_length_15993_cov_9.085907_pilon_pilon_pilon_pilon,Region&nbsp5.1,NRPS,1,15993,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_140_polish,NODE_14_length_23199_cov_14.792129_pilon_pilon_pilon_pilon,Region&nbsp14.1,NRPS,1,23199,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_131_polish,NODE_29_length_8974_cov_9.423646_pilon_pilon_pilon_pilon,Region&nbsp29.1,NRPS,1,8974,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_128_polish,NODE_35_length_13542_cov_17.389489_pilon_pilon_pilon_pilon,Region&nbsp35.1,NRPS,1,13542,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_129_polish,NODE_6_length_21594_cov_5.055110_pilon_pilon_pilon_pilon,Region&nbsp6.1,NRPS,1,21594,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_130_polish,NODE_6_length_20783_cov_10.200039_pilon_pilon_pilon_pilon,Region&nbsp6.1,NRPS,1,20783,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_127_polish,NODE_1_length_35274_cov_14.073833_pilon_pilon_pilon_pilon,Region&nbsp1.1,NRPS,1,35274,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_117_polish,NODE_1_length_30471_cov_4.115509_pilon_pilon_pilon_pilon,Region&nbsp1.1,NRPS,1,30471,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_118_polish,NODE_4_length_13254_cov_7.907976_pilon_pilon_pilon_pilon,Region&nbsp4.1,NRPS,1,13254,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_120_polish,NODE_2_length_20799_cov_5.257111_pilon_pilon_pilon_pilon,Region&nbsp2.1,NRPS,1,20799,aureusimine A/aureusimine B/aureusimine C,100,NRP
+CA_119_polish,NODE_9_length_13472_cov_7.667516_pilon_pilon_pilon_pilon,Region&nbsp9.1,NRPS,1,13472,aureusimine A/aureusimine B/aureusimine C,100,NRP

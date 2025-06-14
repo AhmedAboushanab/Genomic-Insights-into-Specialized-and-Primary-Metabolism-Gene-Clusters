@@ -1,0 +1,7 @@
+Sample-id,Control,Region,Type,From,To,Most_similar_known cluster,,Similarity
+Reference-1,GCA_000013425.1_ASM1342v1_genomic ,Region 1,NI-siderophore,"77,516","93,234",staphyloferrin B,Other,91%
+Reference-1,GCA_000013425.1_ASM1342v1_genomic ,Region 5,NI-siderophore,"2,253,966","2,268,981",staphyloferrin A,Other:Non-NRP siderophore,100%
+Reference-2,GCA_006094915.1_ASM609491v1_genomic,Region 1.1,NI-siderophore,"76,171","91,888",staphyloferrin B,Other,91%
+Reference-2,GCA_006094915.1_ASM609491v1_genomic,Region 1.5,NI-siderophore,"2,188,060","2,203,075",staphyloferrin A,Other:Non-NRP siderophore,100%
+Reference-3,GCA_002895385.1_ASM289538v1_genomic,Region 1,NI-siderophore,"99,535","114,795",staphyloferrin B,Other,91%
+Reference-3,GCA_002895385.1_ASM289538v1_genomic,Region 5,NI-siderophore,"2,475,023","2,490,038",staphyloferrin A,Other:Non-NRP siderophore,100%

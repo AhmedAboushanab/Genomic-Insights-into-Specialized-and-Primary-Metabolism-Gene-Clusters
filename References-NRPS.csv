@@ -1,0 +1,4 @@
+Sample-id,Control,Region,Type,From,To,Most_similar_known cluster,,Similarity
+Reference-1,GCA_000013425.1_ASM1342v1_genomic ,Region 2,NRPS,"129,045","176,220",aureusimine A/aureusimine B/aureusimine C,NRP,100%
+Reference-2,GCA_006094915.1_ASM609491v1_genomic,Region 1.2,NRPS,"127,701","174,876",aureusimine A/aureusimine B/aureusimine C,NRP,100%
+Reference-3,GCA_002895385.1_ASM289538v1_genomic,Region 2,NRPS,"150,012","197,187",aureusimine A/aureusimine B/aureusimine C,NRP,100%
