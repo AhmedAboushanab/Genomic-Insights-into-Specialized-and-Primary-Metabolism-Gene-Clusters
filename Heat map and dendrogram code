@@ -1,0 +1,63 @@
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("ComplexHeatmap")
+
+
+# Load required libraries
+library(ComplexHeatmap)
+library(circlize)
+library(RColorBrewer)
+library(readr)
+library(viridis)
+
+# Load data
+df <- read_csv("AntiSMASH_results for all samples.csv")
+
+# Check column names
+colnames(df)[1:3]  # Make sure first column is 'Sample' or similar
+
+# Set rownames from sample names
+rownames(df) <- df$Sample
+df$Sample <- NULL
+
+# Extract CC and convert to factor
+cc_labels <- as.factor(df$CC)
+df$CC <- NULL
+
+# Convert rest to numeric matrix
+mat <- as.matrix(df)
+
+# Define CC colors
+cc_levels <- levels(cc_labels)
+cc_palette <- brewer.pal(n = length(cc_levels), "Set3")
+names(cc_palette) <- cc_levels
+
+# Create row annotation for CC
+row_anno <- rowAnnotation(
+  CC = cc_labels,
+  col = list(CC = cc_palette),
+  show_annotation_name = FALSE
+)
+
+# Build and draw the heatmap
+ht <- Heatmap(mat,
+              name = "Presence",
+              col = colorRamp2(c(0, 1), viridis::viridis(2)),
+              #col = colorRamp2(c(0, 1), c("lightyellow", "navy")), 
+              cluster_rows = TRUE,
+              cluster_columns = TRUE,
+              show_row_names = TRUE,
+              show_column_names = TRUE,
+              left_annotation = row_anno,
+              column_title = "antiSMASH Resutlts for samples and references")
+
+# Save to PDF
+pdf("antiSMASH_heatmap.pdf", width = 12, height = 10)
+draw(ht, heatmap_legend_side = "right", annotation_legend_side = "bottom")
+dev.off()
+
+# Save to PNG
+png("antiSMASH_heatmap.png", width = 1600, height = 1400, res = 150)
+draw(ht, heatmap_legend_side = "right", annotation_legend_side = "bottom")
+dev.off()
