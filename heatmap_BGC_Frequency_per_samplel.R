@@ -60,7 +60,7 @@ row_anno <- rowAnnotation(
 # Build the heatmap
 ht <- Heatmap(
   mat,
-  name = "Primary metabolism GCs Count per sample",
+  name = "GCs Count per sample",
   col = col_fun,
   cluster_rows = TRUE,
   cluster_columns = TRUE,
