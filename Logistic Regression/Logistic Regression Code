@@ -8,7 +8,7 @@
 
 ## ---------- USER: set your file(s) ----------
 csv_path        <- "AntiSMASH_results for all samples.csv"   # your per-Genome BGC file
-Genome_size_csv <- "Supplementary Table S5.csv"  # e.g. "Genome_sizes.csv" if you have sizes; else keep NULL
+Genome_size_csv <- "Supplementary Table S7.csv"  # e.g. "Genome_sizes.csv" if you have sizes; else keep NULL
 
 ## Column names in your main file
 id_col_name      <- "Sample"
