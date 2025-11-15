@@ -12,7 +12,7 @@ library(dplyr)
 library(tidyr)
 
 ## 1) Load & sanitize
-csv_path <- "Book4.csv"  # use full path if needed
+csv_path <- "Supplementary Table S4.csv"  # use full path if needed
 df <- read.csv(csv_path, check.names = FALSE, stringsAsFactors = FALSE)
 
 # Pick CC column (prefer exact, else first col)
