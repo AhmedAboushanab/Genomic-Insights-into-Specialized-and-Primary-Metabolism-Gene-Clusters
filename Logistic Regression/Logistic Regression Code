@@ -1,0 +1,213 @@
+## =========================================================
+## Logistic regression + Save-all helper
+##   presence(NIS) ~ CC + Genome_size
+##   presence(metallophore) ~ CC + Genome_size
+## Falls back to ~ CC if Genome_size absent
+## Exports CSVs, model RDS, summaries, and optional Excel
+## =========================================================
+
+## ---------- USER: set your file(s) ----------
+csv_path        <- "AntiSMASH_results for all samples.csv"   # your per-Genome BGC file
+Genome_size_csv <- "Supplementary Table S5.csv"  # e.g. "Genome_sizes.csv" if you have sizes; else keep NULL
+
+## Column names in your main file
+id_col_name      <- "Sample"
+cc_col_name      <- "CC"
+nis_col_name     <- "NI-siderophore"
+metallo_col_name <- "Opine-like-metallophore"
+
+## Which CC should be the baseline?
+baseline_cc <- "CC97"
+
+## =========================================================
+## Helpers
+## =========================================================
+trim_ws <- function(x) gsub("\\s+", " ", trimws(x))
+
+to_binary_presence <- function(x) {
+  if (is.logical(x)) return(as.integer(x))
+  if (is.numeric(x)) return(as.integer(x > 0))
+  x2 <- suppressWarnings(as.numeric(x))
+  if (all(is.finite(x2))) return(as.integer(x2 > 0))
+  as.integer(tolower(trim_ws(as.character(x))) != "0")
+}
+
+tidy_or <- function(glm_fit, conf.level = 0.95) {
+  s <- summary(glm_fit)$coefficients
+  beta <- s[, "Estimate"]; se <- s[, "Std. Error"]; p <- s[, "Pr(>|z|)"]
+  OR <- exp(beta)
+  zcrit <- qnorm(1 - (1 - conf.level)/2)
+  L <- exp(beta - zcrit * se); U <- exp(beta + zcrit * se)
+  out <- data.frame(
+    term = rownames(s),
+    estimate = round(beta, 3),
+    std_error = round(se, 3),
+    odds_ratio = round(OR, 3),
+    ci_lower = round(L, 3),
+    ci_upper = round(U, 3),
+    p_value = signif(p, 3),
+    row.names = NULL, check.names = FALSE
+  )
+  out
+}
+
+## Fit one logistic model; returns rows_used to map back to Sample IDs later
+run_logit <- function(df, outcome_col, cc_col, gs_col = NULL, baseline_cc = "CC97") {
+  y  <- to_binary_presence(df[[outcome_col]])
+  cc <- factor(trim_ws(as.character(df[[cc_col]])))
+  if (baseline_cc %in% levels(cc)) cc <- stats::relevel(cc, ref = baseline_cc)
+  
+  d <- data.frame(y = y, CC = cc)
+  
+  use_gs <- FALSE
+  if (!is.null(gs_col) && gs_col %in% names(df)) {
+    gs <- suppressWarnings(as.numeric(df[[gs_col]]))
+    if (all(is.finite(gs))) {
+      d$Genome_size <- as.numeric(scale(gs))  # z-score
+      use_gs <- TRUE
+    }
+  }
+  
+  # keep row mapping before na.omit
+  d$..row <- seq_len(nrow(d))
+  d <- stats::na.omit(d)
+  rows_used <- d$..row
+  d$..row <- NULL
+  
+  if (length(unique(d$y)) < 2) {
+    stop("Outcome '", outcome_col, "' has no variability after cleaning.")
+  }
+  
+  form <- if (use_gs) stats::as.formula(y ~ CC + Genome_size) else stats::as.formula(y ~ CC)
+  fit <- stats::glm(form, family = stats::binomial(), data = d)
+  list(
+    model    = fit,
+    tidy     = tidy_or(fit),
+    n        = nrow(d),
+    baseline = levels(d$CC)[1],
+    used_gs  = use_gs,
+    rows_used = rows_used
+  )
+}
+
+## Save all outputs: CSVs, RDS, summaries, optional Excel workbook
+save_all <- function(nis_fit, met_fit, df = NULL, id_col_name = "Sample",
+                     out_dir = "logit_results", make_excel = FALSE) {
+  dir.create(out_dir, showWarnings = FALSE)
+  
+  build_train <- function(fit_obj, outcome_name) {
+    stopifnot(!is.null(fit_obj$model))
+    mf <- model.frame(fit_obj$model)  # columns: y, CC, maybe Genome_size
+    out <- data.frame(
+      mf,
+      fitted_prob  = unname(stats::fitted(fit_obj$model)),
+      fitted_class = as.integer(stats::fitted(fit_obj$model) >= 0.5),
+      check.names  = FALSE
+    )
+    names(out)[names(out) == "y"] <- outcome_name
+    out
+  }
+  
+  # Create training-prediction tables
+  nis_train <- build_train(nis_fit, "NIS")
+  met_train <- build_train(met_fit, "Metallophore")
+  
+  # Attach Sample IDs if available and rows_used provided
+  if (!is.null(df) && id_col_name %in% names(df)) {
+    if (!is.null(nis_fit$rows_used)) {
+      nis_train[[id_col_name]] <- df[[id_col_name]][nis_fit$rows_used]
+      nis_train <- nis_train[, c(id_col_name, setdiff(names(nis_train), id_col_name))]
+    }
+    if (!is.null(met_fit$rows_used)) {
+      met_train[[id_col_name]] <- df[[id_col_name]][met_fit$rows_used]
+      met_train <- met_train[, c(id_col_name, setdiff(names(met_train), id_col_name))]
+    }
+  }
+  
+  # 1) Tidy OR tables
+  utils::write.csv(nis_fit$tidy, file.path(out_dir, "nis_OR_table.csv"), row.names = FALSE)
+  utils::write.csv(met_fit$tidy, file.path(out_dir, "metallophore_OR_table.csv"), row.names = FALSE)
+  
+  # 2) Training fitted probabilities
+  utils::write.csv(nis_train, file.path(out_dir, "nis_training_fitted.csv"), row.names = FALSE)
+  utils::write.csv(met_train, file.path(out_dir, "met_training_fitted.csv"), row.names = FALSE)
+  
+  # 3) Model objects (reload with readRDS())
+  saveRDS(nis_fit$model, file.path(out_dir, "nis_glm_model.rds"))
+  saveRDS(met_fit$model, file.path(out_dir, "metallophore_glm_model.rds"))
+  
+  # 4) Human-readable summaries
+  sink(file.path(out_dir, "model_summaries.txt"))
+  cat("=== Logistic: presence(NIS) ~ ", if (nis_fit$used_gs) "CC + Genome_size" else "CC", " ===\n", sep = "")
+  print(summary(nis_fit$model)); cat("\n")
+  cat("=== Logistic: presence(Metallophore) ~ ", if (met_fit$used_gs) "CC + Genome_size" else "CC", " ===\n", sep = "")
+  print(summary(met_fit$model)); cat("\n")
+  sink()
+  
+  # 5) Optional: one Excel workbook (needs openxlsx)
+  if (make_excel) {
+    if (requireNamespace("openxlsx", quietly = TRUE)) {
+      wb <- openxlsx::createWorkbook()
+      openxlsx::addWorksheet(wb, "NIS_OR");      openxlsx::writeData(wb, "NIS_OR", nis_fit$tidy)
+      openxlsx::addWorksheet(wb, "Met_OR");      openxlsx::writeData(wb, "Met_OR", met_fit$tidy)
+      openxlsx::addWorksheet(wb, "NIS_fitted");  openxlsx::writeData(wb, "NIS_fitted", nis_train)
+      openxlsx::addWorksheet(wb, "Met_fitted");  openxlsx::writeData(wb, "Met_fitted", met_train)
+      openxlsx::saveWorkbook(wb, file.path(out_dir, "logit_results.xlsx"), overwrite = TRUE)
+    } else {
+      message("Excel skipped: install.packages('openxlsx') to enable workbook export.")
+    }
+  }
+  
+  message("Saved outputs in: ", normalizePath(out_dir))
+}
+
+## =========================================================
+## Load data and (optionally) merge Genome size
+## =========================================================
+df <- utils::read.csv(csv_path, check.names = FALSE, stringsAsFactors = FALSE)
+names(df) <- trim_ws(names(df))
+
+Genome_size_col <- NULL
+if (!is.null(Genome_size_csv)) {
+  gsdf <- utils::read.csv(Genome_size_csv, check.names = FALSE, stringsAsFactors = FALSE)
+  names(gsdf) <- trim_ws(names(gsdf))
+  if (!("Sample" %in% names(gsdf))) stop("Genome-size CSV must contain a 'Sample' column.")
+  if (!("Genome_size" %in% names(gsdf))) stop("Genome-size CSV must contain numeric 'Genome_size'.")
+  df <- merge(df, gsdf[, c("Sample", "Genome_size")], by.x = id_col_name, by.y = "Sample", all.x = TRUE)
+  Genome_size_col <- "Genome_size"
+}
+
+## =========================================================
+## Fit the two models
+## =========================================================
+nis_fit <- run_logit(df, nis_col_name,     cc_col_name, gs_col = Genome_size_col, baseline_cc = baseline_cc)
+met_fit <- run_logit(df, metallo_col_name, cc_col_name, gs_col = Genome_size_col, baseline_cc = baseline_cc)
+
+## Print brief results
+msg_gs <- if (!is.null(Genome_size_col) && nis_fit$used_gs && met_fit$used_gs) {
+  paste0("Genome_size used: '", Genome_size_col, "' (z-scored)")
+} else {
+  "Genome_size not found/usable → models fit with CC only"
+}
+cat("Columns used:\n",
+    "  ID:              ", id_col_name, "\n",
+    "  CC:              ", cc_col_name, "\n",
+    "  NIS outcome:     ", nis_col_name, "\n",
+    "  Metallophore:    ", metallo_col_name, "\n",
+    "  ", msg_gs, "\n",
+    "  Baseline CC:     ", baseline_cc, "\n\n", sep = "")
+
+fmt_print <- function(fit_obj, label) {
+  cat("=== Logistic: presence(", label, ") ~ ",
+      if (fit_obj$used_gs) "CC + Genome_size" else "CC",
+      " (baseline: ", fit_obj$baseline, ", n=", fit_obj$n, ") ===\n", sep = "")
+  print(fit_obj$tidy, row.names = FALSE); cat("\n")
+}
+fmt_print(nis_fit, "NIS")
+fmt_print(met_fit, "metallophore")
+
+## =========================================================
+## Save all outputs (CSV/RDS/TXT; set make_excel = TRUE to also save XLSX)
+## =========================================================
+save_all(nis_fit, met_fit, df = df, id_col_name = id_col_name,
+         out_dir = "logit_results", make_excel = FALSE)
