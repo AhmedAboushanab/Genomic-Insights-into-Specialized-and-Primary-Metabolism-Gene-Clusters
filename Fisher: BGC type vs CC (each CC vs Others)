@@ -1,0 +1,137 @@
+## =========================================
+## Fisher: BGC type vs CC (each CC vs Others)
+## Heatmap of log2(OR) with asterisks for q<0.05
+## Custom palette includes: #deebf7, #4292c6, #000000 (+ white, orange)
+## =========================================
+
+# Install once if needed:
+# install.packages(c("ggplot2","dplyr","tidyr"))
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+## 1) Load & sanitize
+csv_path <- "Book4.csv"  # use full path if needed
+df <- read.csv(csv_path, check.names = FALSE, stringsAsFactors = FALSE)
+
+# Pick CC column (prefer exact, else first col)
+cc_col <- if ("Clonal Complex" %in% names(df)) "Clonal Complex" else names(df)[1]
+
+# Trim/cleanup CC names, fill blanks, ensure unique
+cc_names_raw <- trimws(as.character(df[[cc_col]]))
+cc_names_raw[is.na(cc_names_raw) | cc_names_raw == ""] <- "Unknown"
+cc_names <- make.unique(cc_names_raw)
+
+# Build numeric matrix of BGC counts
+bgc_mat <- as.matrix(df[, setdiff(names(df), cc_col), drop = FALSE])
+suppressWarnings(storage.mode(bgc_mat) <- "numeric")
+bgc_mat[!is.finite(bgc_mat)] <- 0
+
+# Attach sanitized rownames & clean colnames
+rownames(bgc_mat) <- cc_names
+colnames(bgc_mat) <- trimws(colnames(bgc_mat))
+
+# Totals per CC
+total_per_cc <- rowSums(bgc_mat, na.rm = TRUE)
+
+## 2) Fisher tests (index-based to avoid name mismatches)
+res_list <- list()
+n_cc  <- nrow(bgc_mat)
+n_bgc <- ncol(bgc_mat)
+
+cap <- 5  # cap for log2(OR) to keep colors readable
+
+for (ri in seq_len(n_cc)) {
+  others_idx <- setdiff(seq_len(n_cc), ri)
+  for (ci in seq_len(n_bgc)) {
+    succ_cc    <- bgc_mat[ri, ci]
+    fail_cc    <- total_per_cc[ri] - succ_cc
+    succ_other <- sum(bgc_mat[others_idx, ci], na.rm = TRUE)
+    fail_other <- sum(total_per_cc[others_idx], na.rm = TRUE) - succ_other
+    
+    tab <- matrix(c(succ_cc, fail_cc, succ_other, fail_other),
+                  nrow = 2, byrow = TRUE,
+                  dimnames = list(Group = c(rownames(bgc_mat)[ri], "Others"),
+                                  Status = c("BGC", "Not_BGC")))
+    
+    if (any(!is.finite(tab)) || any(tab < 0)) next
+    
+    ft <- fisher.test(tab)
+    or <- if (is.null(ft$estimate)) NA_real_ else unname(ft$estimate)
+    
+    # Safe log2(OR) with capping (treat 0 -> -cap, Inf -> +cap for display)
+    l2 <- suppressWarnings(log2(or))
+    if (!is.finite(l2)) {
+      if (is.finite(or) && or == 0)      l2 <- -cap
+      else if (is.infinite(or))          l2 <-  cap
+      else                                l2 <- NA_real_
+    }
+    l2_cap <- max(min(l2, cap), -cap)
+    
+    res_list[[length(res_list) + 1]] <- data.frame(
+      CC              = rownames(bgc_mat)[ri],
+      BGC_type        = colnames(bgc_mat)[ci],
+      odds_ratio      = or,
+      log2_or         = l2,
+      log2_or_capped  = l2_cap,
+      p_value         = ft$p.value,
+      stringsAsFactors = FALSE
+    )
+  }
+}
+
+res_df <- bind_rows(res_list)
+
+# Multiple testing correction (BH)
+res_df$q_value <- p.adjust(res_df$p_value, method = "BH")
+res_df$star    <- ifelse(res_df$q_value < 0.05, "*", "")
+
+## 3) Order BGCs (optional: by median log2 OR for nicer display)
+res_df <- res_df |>
+  group_by(BGC_type) |>
+  mutate(bgc_order = median(log2_or_capped, na.rm = TRUE)) |>
+  ungroup()
+
+res_df$BGC_type <- factor(
+  res_df$BGC_type,
+  levels = res_df |>
+    distinct(BGC_type, bgc_order) |>
+    arrange(bgc_order) |>
+    pull(BGC_type)
+)
+
+## 4) Custom color palette
+## Include: "#deebf7" (light blue), "#4292c6" (mid blue), "#000000" (black)
+## Add white at 0 (neutral) and orange for moderate enrichment
+pal_breaks <- c(-cap, -1, 0, 2, cap)  # positions (on log2 OR scale)
+pal_vals   <- (pal_breaks + cap) / (2*cap)  # rescale to [0,1] without extra pkgs
+pal_cols   <- c("#4292c6", "#deebf7", "#FFFFFF", "#fdae6b", "#000000")
+
+## 5) Heatmap
+ggplot(res_df, aes(x = CC, y = BGC_type, fill = log2_or_capped)) +
+  geom_tile(color = "white") +
+  # Asterisks for q<0.05; white to be visible on dark tiles
+  geom_text(aes(label = star), color = "white", size = 4) +
+  scale_fill_gradientn(
+    name   = "log2(OR)",
+    colors = pal_cols,
+    values = pal_vals,
+    limits = c(-cap, cap),
+    na.value = "grey90"
+  ) +
+  theme_minimal(base_size = 12) +
+  labs(
+    title = "Fisher’s exact test: BGC enrichment in each CC vs others",
+    x = "Clonal Complex",
+    y = "BGC type"
+  ) +
+  theme(
+    axis.text.x  = element_text(angle = 45, hjust = 1),
+    plot.title   = element_text(hjust = 0.5, face = "bold", size = 14),
+    axis.title.x = element_text(face = "bold", size = 12),
+    axis.title.y = element_text(face = "bold", size = 12)
+  )
+
+## (Optional) write results
+write.csv(res_df, "fisher_cc_vs_others_results.csv", row.names = FALSE)
