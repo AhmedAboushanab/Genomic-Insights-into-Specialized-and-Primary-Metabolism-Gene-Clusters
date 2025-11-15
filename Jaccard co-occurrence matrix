@@ -1,0 +1,116 @@
+## =========================================
+## Jaccard co-occurrence matrix
+## Top 10 primary modules (base types)
+## Heatmap with 30° x-axis labels
+## Custom palette with black at max Jaccard
+## =========================================
+
+## ---- User: set your file path ----
+csv_path <- "AntiSMASH_results for all samples.csv"  # change if needed
+
+## ---- Helpers ----
+trim_ws <- function(x) gsub("\\s+", " ", trimws(x))
+
+## ---- Load data ----
+df <- read.csv(csv_path, check.names = FALSE, stringsAsFactors = FALSE)
+names(df) <- trim_ws(names(df))
+
+# Non-module columns to exclude (add more if needed)
+non_module_cols <- intersect(c("Sample", "CC"), names(df))
+
+# Candidate module columns = everything else
+mod_cols <- setdiff(names(df), non_module_cols)
+
+# Coerce module columns to numeric counts; NAs/Inf -> 0
+mat_counts <- as.matrix(df[, mod_cols, drop = FALSE])
+suppressWarnings(storage.mode(mat_counts) <- "numeric")
+mat_counts[!is.finite(mat_counts)] <- 0
+
+## ---- Build base (primary) module set by splitting composite headers ----
+# e.g., "T3PKS,TPS" -> c("T3PKS","TPS")
+split_modules <- strsplit(mod_cols, ",")
+split_modules <- lapply(split_modules, function(v) trim_ws(v[nzchar(trim_ws(v))]))
+base_modules  <- sort(unique(unlist(split_modules)))
+
+## ---- Build presence/absence (0/1) for each base module across genomes ----
+n <- nrow(mat_counts)
+B <- matrix(0L, nrow = n, ncol = length(base_modules),
+            dimnames = list(NULL, base_modules))
+
+for (bm in base_modules) {
+  cols_with_bm <- mod_cols[sapply(split_modules, function(v) bm %in% v)]
+  if (length(cols_with_bm) == 1) {
+    present <- mat_counts[, cols_with_bm, drop = TRUE] > 0
+  } else {
+    present <- rowSums(mat_counts[, cols_with_bm, drop = FALSE] > 0) > 0
+  }
+  present[is.na(present)] <- FALSE
+  B[, bm] <- as.integer(present)
+}
+
+## ---- Choose top 10 modules by prevalence ----
+prev  <- colSums(B)
+top10 <- names(sort(prev, decreasing = TRUE))[seq_len(min(10, length(prev)))]
+X     <- B[, top10, drop = FALSE]
+
+cat("Top 10 modules by prevalence:\n")
+print(data.frame(module = top10, prevalence = prev[top10]), row.names = FALSE)
+
+## ---- Compute Jaccard matrix for the top 10 ----
+# n11 = intersection counts; union = totals_i + totals_j - n11
+n11   <- t(X) %*% X
+tot   <- colSums(X)
+union <- outer(tot, tot, "+") - n11
+J     <- n11 / union
+J[union == 0] <- NA
+diag(J) <- 1
+
+cat("\nJaccard matrix (top 10 primary modules):\n")
+print(round(J, 3))
+
+## ---- ggplot2 heatmap with custom palette and no cell borders ----
+# install.packages("ggplot2")  # uncomment if needed
+library(ggplot2)
+
+# Long format (no extra deps)
+dfJ <- as.data.frame(as.table(J))           # Var1=row, Var2=col, Freq=value
+names(dfJ) <- c("row", "col", "value")
+
+# Keep original order
+dfJ$row <- factor(dfJ$row, levels = rownames(J))
+dfJ$col <- factor(dfJ$col, levels = colnames(J))
+
+# Palette: same blues + black at the highest Jaccard
+# (values map the color positions across [0,1])
+pal_cols   <- c("#f7fbff", "#c6dbef", "#6baed6", "#08306b", "#000000")
+pal_values <- c(0.00,      0.25,      0.50,      0.85,      1.00)
+
+ggplot(dfJ, aes(x = col, y = row, fill = value)) +
+  # Remove white lines: no outline color
+  geom_tile(color = NA) +
+  scale_fill_gradientn(
+    colours = pal_cols,
+    values  = pal_values,
+    limits  = c(0, 1),       # Jaccard is in [0,1]
+    na.value = "grey90",
+    name    = "Jaccard"
+  ) +
+  coord_fixed() +
+  scale_x_discrete(expand = c(0, 0)) +
+  scale_y_discrete(expand = c(0, 0)) +
+  labs(
+    title = "Jaccard: Top 10 Primary Modules",
+    x = "Module",
+    y = "Module"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    axis.text.x  = element_text(angle = 30, hjust = 1, vjust = 1),
+    plot.title   = element_text(hjust = 0.5, face = "bold"),
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold")
+  )
+
+## ---- (Optional) save outputs ----
+write.csv(as.data.frame(J), "jaccard_top10_primary_modules.csv", row.names = TRUE)
+ggsave("jaccard_top10_primary_modules_heatmap.png", width = 8, height = 6, dpi = 300)
