@@ -1,0 +1,72 @@
+# Install once if needed:
+# install.packages(c("tidyverse", "ggdist"))
+
+library(tidyverse)
+library(ggdist)   # for stat_halfeye (half-violin style)
+
+# Set your path
+csv_path <- "Book4.csv"   # or full path if needed
+
+# Read data
+df <- read.csv(csv_path, check.names = FALSE, stringsAsFactors = FALSE)
+
+# Long format: one row per (CC, BGC type)
+df_long <- df %>%
+  pivot_longer(
+    cols = -`Clonal Complex`,
+    names_to  = "BGC_type",
+    values_to = "count"
+  ) %>%
+  filter(!is.na(count))   # keep all non-NA counts
+
+# Quick sanity check
+head(df_long)
+
+ggplot(df_long, aes(x = BGC_type, y = count, fill = BGC_type)) +
+  # "Cloud": half-violin (density)
+  stat_halfeye(
+    adjust = 0.5,
+    width = 0.6,
+    .width = 0,
+    justification = -0.3,
+    point_colour = NA
+  ) +
+  # Boxplot (middle)
+  geom_boxplot(
+    width = 0.2,
+    outlier.shape = NA,
+    alpha = 0.4
+  ) +
+  # "Rain": jittered points (each point = one CC)
+  geom_jitter(
+    aes(color = BGC_type),
+    width = 0.05,
+    alpha = 0.7,
+    size = 2
+  ) +
+  coord_flip() +
+  theme_minimal(base_size = 12) +
+  labs(
+    x = "BGC type",
+    y = "Count across clonal complexes",
+    title = "Raincloud plot of BGC counts across clonal complexes"
+  ) +
+  theme(
+    legend.position = "none",
+    axis.text.y = element_text(size = 9),
+    # bold, centered title
+    plot.title = element_text(
+      hjust = 0.5,    # center
+      face  = "bold",
+      size  = 14
+    ),
+    # bold axis titles (already centered along their axes)
+    axis.title.x = element_text(
+      face = "bold",
+      size = 12
+    ),
+    axis.title.y = element_text(
+      face = "bold",
+      size = 12
+    )
+  )
