@@ -1,0 +1,184 @@
+# =========================================================
+# Median (IQR) BGCs per genome by CC + raincloud/violin plot
+# Saves summary CSV + plotting CSV + PNG figure
+# =========================================================
+
+# Install once if needed:
+# install.packages(c("ggplot2", "dplyr", "tidyr", "ggdist"))
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(ggdist)
+
+# ---------------- User settings ----------------
+csv_path   <- "AntiSMASH_results for all samples.csv"              # <-- change to your file if needed
+out_dir    <- "bgc_by_cc_outputs"
+plot_file  <- file.path(out_dir, "raincloud_bgcs_per_genome_by_CC.png")
+summary_csv<- file.path(out_dir, "median_IQR_BGCs_per_genome_by_CC.csv")
+plotdata_csv <- file.path(out_dir, "bgcs_per_genome_plotdata.csv")
+
+dir.create(out_dir, showWarnings = FALSE)
+
+# ---------------- Helpers ----------------
+trim_ws <- function(x) gsub("\\s+", " ", trimws(x))
+
+# Read
+df <- read.csv(csv_path, check.names = FALSE, stringsAsFactors = FALSE)
+names(df) <- trim_ws(names(df))
+
+# Detect CC column name
+cc_col <- NULL
+if ("CC" %in% names(df)) cc_col <- "CC"
+if (is.null(cc_col) && "Clonal Complex" %in% names(df)) cc_col <- "Clonal Complex"
+if (is.null(cc_col)) {
+  # try regex
+  maybe <- grep("^clonal\\s*complex$|^cc$", names(df), ignore.case = TRUE, value = TRUE)
+  if (length(maybe) > 0) cc_col <- maybe[1]
+}
+
+# Detect a per-genome ID column (optional; only to pass through to plot-data)
+id_colname <- NULL
+for (cand in c("Sample","Genome","ID","Strain","Isolate","Name")) {
+  if (cand %in% names(df)) { id_colname <- cand; break }
+}
+
+# Identify candidate BGC columns (everything except CC and ID)
+bgc_cols <- setdiff(names(df), c(cc_col, id_colname))
+if (length(bgc_cols) < 1) stop("No BGC columns detected after excluding CC/ID. Please check your file.")
+
+# Coerce BGC columns to numeric
+bgc_mat <- as.matrix(df[, bgc_cols, drop = FALSE])
+suppressWarnings(storage.mode(bgc_mat) <- "numeric")
+bgc_mat[!is.finite(bgc_mat)] <- 0
+
+# ---------------------------------------------------------
+# Path A (preferred): per-genome file -> total BGCs per genome
+#   y = rowSums of all BGC counts for each genome
+#   Summarise per CC: median, IQR (Q1–Q3), n
+#   Plot raincloud per CC for total BGCs per genome
+# ---------------------------------------------------------
+if (!is.null(cc_col)) {
+  # Build totals per genome
+  total_bgcs <- rowSums(bgc_mat, na.rm = TRUE)
+  
+  plot_df <- data.frame(
+    CC = trim_ws(as.character(df[[cc_col]])),
+    total_bgcs = total_bgcs,
+    stringsAsFactors = FALSE
+  )
+  if (!is.null(id_colname)) plot_df[[id_colname]] <- df[[id_colname]]
+  
+  # Remove rows with missing CC
+  plot_df <- tidyr::drop_na(plot_df, CC)
+  
+  # Summary per CC
+  summary_df <- plot_df %>%
+    group_by(CC) %>%
+    summarise(
+      n_genomes = dplyr::n(),
+      median = stats::median(total_bgcs, na.rm = TRUE),
+      Q1 = stats::quantile(total_bgcs, 0.25, na.rm = TRUE, type = 7),
+      Q3 = stats::quantile(total_bgcs, 0.75, na.rm = TRUE, type = 7),
+      IQR = Q3 - Q1,
+      .groups = "drop"
+    ) %>%
+    arrange(desc(median))
+  
+  message("Computed per-genome totals by CC (preferred).")
+  
+  # Order CCs by median for nicer plot
+  plot_df$CC <- factor(plot_df$CC, levels = summary_df$CC)
+  
+  # Save outputs
+  write.csv(summary_df, summary_csv, row.names = FALSE)
+  write.csv(plot_df,   plotdata_csv, row.names = FALSE)
+  
+  # Raincloud/violin
+  p <- ggplot(plot_df, aes(x = CC, y = total_bgcs, fill = CC)) +
+    # cloud: half-violin
+    stat_halfeye(
+      adjust = 0.5, width = 0.6, .width = 0,
+      justification = -0.3, point_colour = NA
+    ) +
+    # middle: boxplot
+    geom_boxplot(width = 0.2, outlier.shape = NA, alpha = 0.5) +
+    # rain: jitter points (each = one genome)
+    geom_jitter(width = 0.05, alpha = 0.7, size = 1.8, color = "black") +
+    labs(
+      x = "Clonal Complex",
+      y = "Total BGCs per genome",
+      title = "BGCs per genome by Clonal Complex (median and IQR)"
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      legend.position = "none",
+      axis.text.x  = element_text(angle = 30, hjust = 1, vjust = 1),
+      plot.title   = element_text(hjust = 0.5, face = "bold", size = 14),
+      axis.title.x = element_text(face = "bold", size = 12),
+      axis.title.y = element_text(face = "bold", size = 12)
+    )
+  
+  ggsave(plot_file, p, width = 10, height = 6, dpi = 300)
+  print(p)
+  
+} else {
+  # ---------------------------------------------------------
+  # Path B (fallback): CC-aggregated file (no CC column)
+  # We compute median (IQR) across BGC types within each row (each CC),
+  # then plot raincloud per "pseudo-CC". This is NOT per-genome.
+  # ---------------------------------------------------------
+  message("No CC column detected. Assuming the file is CC-aggregated (e.g., like Book4.csv).")
+  message("Reporting median (IQR) of BGC counts across BGC types within each row (NOT per-genome).")
+  
+  df_long <- df %>%
+    mutate(Row = seq_len(n())) %>%
+    pivot_longer(
+      cols = all_of(bgc_cols),
+      names_to = "BGC_type",
+      values_to = "count"
+    ) %>%
+    filter(!is.na(count))
+  
+  summary_df <- df_long %>%
+    group_by(Row) %>%
+    summarise(
+      n_types = dplyr::n(),
+      median = stats::median(count, na.rm = TRUE),
+      Q1 = stats::quantile(count, 0.25, na.rm = TRUE, type = 7),
+      Q3 = stats::quantile(count, 0.75, na.rm = TRUE, type = 7),
+      IQR = Q3 - Q1,
+      .groups = "drop"
+    )
+  
+  write.csv(summary_df, summary_csv, row.names = FALSE)
+  write.csv(df_long,   plotdata_csv, row.names = FALSE)
+  
+  p <- ggplot(df_long, aes(x = factor(Row), y = count, fill = factor(Row))) +
+    stat_halfeye(
+      adjust = 0.5, width = 0.6, .width = 0,
+      justification = -0.3, point_colour = NA
+    ) +
+    geom_boxplot(width = 0.2, outlier.shape = NA, alpha = 0.5) +
+    geom_jitter(width = 0.05, alpha = 0.7, size = 1.8, color = "black") +
+    labs(
+      x = "Row (CC-aggregated entry)",
+      y = "BGC count (per type, within row)",
+      title = "BGC counts per row (aggregated) — median and IQR across BGC types"
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      legend.position = "none",
+      axis.text.x  = element_text(angle = 30, hjust = 1, vjust = 1),
+      plot.title   = element_text(hjust = 0.5, face = "bold", size = 14),
+      axis.title.x = element_text(face = "bold", size = 12),
+      axis.title.y = element_text(face = "bold", size = 12)
+    )
+  
+  ggsave(plot_file, p, width = 10, height = 6, dpi = 300)
+  print(p)
+}
+
+cat("Saved:\n  - Summary table:", summary_csv,
+    "\n  - Plot data used:", plotdata_csv,
+    "\n  - Figure:", plot_file, "\n")
