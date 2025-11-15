@@ -1,14 +1,14 @@
 ## =========================================================
 ## Logistic regression + Save-all helper
-##   presence(NIS) ~ CC + genome_size
-##   presence(metallophore) ~ CC + genome_size
-## Falls back to ~ CC if genome_size absent
+##   presence(NIS) ~ CC + Genome_size
+##   presence(metallophore) ~ CC + Genome_size
+## Falls back to ~ CC if Genome_size absent
 ## Exports CSVs, model RDS, summaries, and optional Excel
 ## =========================================================
 
 ## ---------- USER: set your file(s) ----------
-csv_path        <- "AntiSMASH_results for all samples.csv"   # your per-genome BGC file
-genome_size_csv <- NULL  # e.g. "genome_sizes.csv" if you have sizes; else keep NULL
+csv_path        <- "AntiSMASH_results for all samples.csv"   # your per-Genome BGC file
+Genome_size_csv <- "Supplementary Table S5.csv"  # e.g. "Genome_sizes.csv" if you have sizes; else keep NULL
 
 ## Column names in your main file
 id_col_name      <- "Sample"
@@ -63,7 +63,7 @@ run_logit <- function(df, outcome_col, cc_col, gs_col = NULL, baseline_cc = "CC9
   if (!is.null(gs_col) && gs_col %in% names(df)) {
     gs <- suppressWarnings(as.numeric(df[[gs_col]]))
     if (all(is.finite(gs))) {
-      d$genome_size <- as.numeric(scale(gs))  # z-score
+      d$Genome_size <- as.numeric(scale(gs))  # z-score
       use_gs <- TRUE
     }
   }
@@ -78,7 +78,7 @@ run_logit <- function(df, outcome_col, cc_col, gs_col = NULL, baseline_cc = "CC9
     stop("Outcome '", outcome_col, "' has no variability after cleaning.")
   }
   
-  form <- if (use_gs) stats::as.formula(y ~ CC + genome_size) else stats::as.formula(y ~ CC)
+  form <- if (use_gs) stats::as.formula(y ~ CC + Genome_size) else stats::as.formula(y ~ CC)
   fit <- stats::glm(form, family = stats::binomial(), data = d)
   list(
     model    = fit,
@@ -97,7 +97,7 @@ save_all <- function(nis_fit, met_fit, df = NULL, id_col_name = "Sample",
   
   build_train <- function(fit_obj, outcome_name) {
     stopifnot(!is.null(fit_obj$model))
-    mf <- model.frame(fit_obj$model)  # columns: y, CC, maybe genome_size
+    mf <- model.frame(fit_obj$model)  # columns: y, CC, maybe Genome_size
     out <- data.frame(
       mf,
       fitted_prob  = unname(stats::fitted(fit_obj$model)),
@@ -138,9 +138,9 @@ save_all <- function(nis_fit, met_fit, df = NULL, id_col_name = "Sample",
   
   # 4) Human-readable summaries
   sink(file.path(out_dir, "model_summaries.txt"))
-  cat("=== Logistic: presence(NIS) ~ ", if (nis_fit$used_gs) "CC + genome_size" else "CC", " ===\n", sep = "")
+  cat("=== Logistic: presence(NIS) ~ ", if (nis_fit$used_gs) "CC + Genome_size" else "CC", " ===\n", sep = "")
   print(summary(nis_fit$model)); cat("\n")
-  cat("=== Logistic: presence(Metallophore) ~ ", if (met_fit$used_gs) "CC + genome_size" else "CC", " ===\n", sep = "")
+  cat("=== Logistic: presence(Metallophore) ~ ", if (met_fit$used_gs) "CC + Genome_size" else "CC", " ===\n", sep = "")
   print(summary(met_fit$model)); cat("\n")
   sink()
   
@@ -162,32 +162,32 @@ save_all <- function(nis_fit, met_fit, df = NULL, id_col_name = "Sample",
 }
 
 ## =========================================================
-## Load data and (optionally) merge genome size
+## Load data and (optionally) merge Genome size
 ## =========================================================
 df <- utils::read.csv(csv_path, check.names = FALSE, stringsAsFactors = FALSE)
 names(df) <- trim_ws(names(df))
 
-genome_size_col <- NULL
-if (!is.null(genome_size_csv)) {
-  gsdf <- utils::read.csv(genome_size_csv, check.names = FALSE, stringsAsFactors = FALSE)
+Genome_size_col <- NULL
+if (!is.null(Genome_size_csv)) {
+  gsdf <- utils::read.csv(Genome_size_csv, check.names = FALSE, stringsAsFactors = FALSE)
   names(gsdf) <- trim_ws(names(gsdf))
   if (!("Sample" %in% names(gsdf))) stop("Genome-size CSV must contain a 'Sample' column.")
-  if (!("genome_size" %in% names(gsdf))) stop("Genome-size CSV must contain numeric 'genome_size'.")
-  df <- merge(df, gsdf[, c("Sample", "genome_size")], by.x = id_col_name, by.y = "Sample", all.x = TRUE)
-  genome_size_col <- "genome_size"
+  if (!("Genome_size" %in% names(gsdf))) stop("Genome-size CSV must contain numeric 'Genome_size'.")
+  df <- merge(df, gsdf[, c("Sample", "Genome_size")], by.x = id_col_name, by.y = "Sample", all.x = TRUE)
+  Genome_size_col <- "Genome_size"
 }
 
 ## =========================================================
 ## Fit the two models
 ## =========================================================
-nis_fit <- run_logit(df, nis_col_name,     cc_col_name, gs_col = genome_size_col, baseline_cc = baseline_cc)
-met_fit <- run_logit(df, metallo_col_name, cc_col_name, gs_col = genome_size_col, baseline_cc = baseline_cc)
+nis_fit <- run_logit(df, nis_col_name,     cc_col_name, gs_col = Genome_size_col, baseline_cc = baseline_cc)
+met_fit <- run_logit(df, metallo_col_name, cc_col_name, gs_col = Genome_size_col, baseline_cc = baseline_cc)
 
 ## Print brief results
-msg_gs <- if (!is.null(genome_size_col) && nis_fit$used_gs && met_fit$used_gs) {
-  paste0("genome_size used: '", genome_size_col, "' (z-scored)")
+msg_gs <- if (!is.null(Genome_size_col) && nis_fit$used_gs && met_fit$used_gs) {
+  paste0("Genome_size used: '", Genome_size_col, "' (z-scored)")
 } else {
-  "genome_size not found/usable → models fit with CC only"
+  "Genome_size not found/usable → models fit with CC only"
 }
 cat("Columns used:\n",
     "  ID:              ", id_col_name, "\n",
@@ -199,7 +199,7 @@ cat("Columns used:\n",
 
 fmt_print <- function(fit_obj, label) {
   cat("=== Logistic: presence(", label, ") ~ ",
-      if (fit_obj$used_gs) "CC + genome_size" else "CC",
+      if (fit_obj$used_gs) "CC + Genome_size" else "CC",
       " (baseline: ", fit_obj$baseline, ", n=", fit_obj$n, ") ===\n", sep = "")
   print(fit_obj$tidy, row.names = FALSE); cat("\n")
 }
