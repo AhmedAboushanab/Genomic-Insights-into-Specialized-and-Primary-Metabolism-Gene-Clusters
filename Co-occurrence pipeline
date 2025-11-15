@@ -1,0 +1,211 @@
+## =========================================================
+## Co-occurrence pipeline (ignores column "CC")
+## - Jaccard matrix (wide + long) saved
+## - Pairwise Fisher (with BH q) saved
+## - Optional heatmap (top-N modules) saved
+## =========================================================
+
+## ---------------- USER SETTINGS ----------------
+csv_path <- "Gut_smash_results_R.csv"  # <-- your per-genome file
+id_col   <- 1                          # column index for genome ID; set 0 if none
+
+## Columns to exclude from analysis by *name* (case/space-insensitive)
+exclude_by_name <- c("CC")
+
+## OUTPUT SETTINGS
+out_dir        <- "cooccur_results"
+make_heatmap   <- TRUE         # set FALSE to skip figure
+heatmap_top_n  <- 20           # plot top-N modules by prevalence (if many columns)
+heatmap_file   <- "jaccard_heatmap_topN.png"
+save_excel     <- FALSE        # one XLSX workbook (requires 'openxlsx')
+
+## ---------------- helpers ----------------
+trim_ws <- function(x) gsub("\\s+", " ", trimws(x))
+
+## ---------------- 1) Read & presence/absence ----------------
+df <- read.csv(csv_path, check.names = FALSE, stringsAsFactors = FALSE)
+names(df) <- trim_ws(names(df))
+
+# columns to analyze = all except ID column (if any)
+if (id_col > 0) {
+  genome_id  <- df[[id_col]]
+  keep_cols  <- setdiff(seq_along(df), id_col)
+} else {
+  genome_id  <- seq_len(nrow(df))
+  keep_cols  <- seq_along(df)
+}
+
+# drop columns that match exclude_by_name (case/space-insensitive)
+if (length(exclude_by_name)) {
+  nms_clean <- tolower(trim_ws(names(df)))
+  drop_idx  <- which(nms_clean %in% tolower(trim_ws(exclude_by_name)))
+  keep_cols <- setdiff(keep_cols, drop_idx)
+}
+
+if (length(keep_cols) < 2L) stop("After excluding ID/CC, fewer than 2 columns remain for analysis.")
+
+mat_counts <- as.matrix(df[, keep_cols, drop = FALSE])
+colnames(mat_counts) <- names(df)[keep_cols]
+
+# coerce to numeric, non-finite -> 0
+suppressWarnings(storage.mode(mat_counts) <- "numeric")
+mat_counts[!is.finite(mat_counts)] <- 0
+
+# presence/absence
+mat_bin <- mat_counts > 0
+mat_bin[is.na(mat_bin)] <- FALSE
+
+# 0/1 matrix
+X <- mat_bin * 1L
+colnames(X) <- colnames(mat_counts)
+rownames(X) <- genome_id
+
+n_genomes <- nrow(X)
+bgc_names <- colnames(X)
+k <- length(bgc_names)
+
+if (k < 2L) stop("Need at least 2 BGC columns to compute pairwise metrics.")
+
+message("Analyzing ", k, " columns. Excluded by name: ",
+        if (length(exclude_by_name)) paste(exclude_by_name, collapse = ", ") else "none")
+
+## ---------------- 2) Jaccard matrix ----------------
+n11_mat    <- t(X) %*% X
+col_totals <- colSums(X)
+union_mat  <- outer(col_totals, col_totals, "+") - n11_mat
+
+jaccard_mat <- n11_mat / union_mat
+jaccard_mat[union_mat == 0] <- NA
+diag(jaccard_mat) <- 1
+dimnames(jaccard_mat) <- list(bgc_names, bgc_names)
+
+# long form (upper triangle incl. diagonal)
+jaccard_long <- as.data.frame(as.table(jaccard_mat), stringsAsFactors = FALSE)
+names(jaccard_long) <- c("BGC_A","BGC_B","Jaccard")
+ordA <- match(jaccard_long$BGC_A, bgc_names)
+ordB <- match(jaccard_long$BGC_B, bgc_names)
+jaccard_long <- jaccard_long[ordA <= ordB, ]
+
+## ---------------- 3) Pairwise Fisher tests ----------------
+pair_results <- vector("list", length = k*(k-1)/2)
+idx <- 1L
+
+for (i in 1:(k-1)) {
+  for (j in (i+1):k) {
+    Ai <- X[, i]
+    Bj <- X[, j]
+    
+    n11 <- sum(Ai == 1 & Bj == 1, na.rm = TRUE)
+    n10 <- sum(Ai == 1 & Bj == 0, na.rm = TRUE)
+    n01 <- sum(Ai == 0 & Bj == 1, na.rm = TRUE)
+    n00 <- sum(Ai == 0 & Bj == 0, na.rm = TRUE)
+    
+    tab <- matrix(c(n11, n10, n01, n00), nrow = 2, byrow = TRUE)
+    if (any(!is.finite(tab)) || any(tab < 0)) next
+    
+    ft <- fisher.test(tab)
+    or <- if (is.null(ft$estimate)) NA_real_ else unname(ft$estimate)
+    
+    log2_or <- suppressWarnings(log2(or))
+    if (!is.finite(log2_or)) {
+      if (is.finite(or) && or == 0) log2_or <- -Inf
+      else if (is.infinite(or))     log2_or <-  Inf
+      else                          log2_or <- NA_real_
+    }
+    
+    pair_results[[idx]] <- data.frame(
+      BGC_A      = bgc_names[i],
+      BGC_B      = bgc_names[j],
+      n11 = n11, n10 = n10, n01 = n01, n00 = n00,
+      Jaccard    = as.numeric(jaccard_mat[i, j]),
+      odds_ratio = or,
+      log2_or    = log2_or,
+      p_value    = ft$p.value,
+      stringsAsFactors = FALSE
+    )
+    idx <- idx + 1L
+  }
+}
+pair_df <- do.call(rbind, pair_results)
+pair_df$p_adj_BH <- p.adjust(pair_df$p_value, method = "BH")
+pair_df <- pair_df[order(pair_df$p_value), ]
+
+## ---------------- 4) Save everything ----------------
+dir.create(out_dir, showWarnings = FALSE)
+
+# Jaccard tables
+write.csv(round(jaccard_mat, 6), file.path(out_dir, "jaccard_matrix_wide.csv"))
+write.csv(jaccard_long,         file.path(out_dir, "jaccard_matrix_long.csv"), row.names = FALSE)
+saveRDS(jaccard_mat,            file.path(out_dir, "jaccard_matrix.rds"))
+
+# Pairwise Fisher
+write.csv(pair_df, file.path(out_dir, "pairwise_fisher_results.csv"), row.names = FALSE)
+saveRDS(pair_df,   file.path(out_dir, "pairwise_fisher_results.rds"))
+
+# Significant pairs only (q < 0.05)
+sig_df <- subset(pair_df, p_adj_BH < 0.05)
+write.csv(sig_df, file.path(out_dir, "significant_pairs_q_lt_0.05.csv"), row.names = FALSE)
+
+# Optional: single Excel workbook
+if (save_excel) {
+  if (requireNamespace("openxlsx", quietly = TRUE)) {
+    wb <- openxlsx::createWorkbook()
+    openxlsx::addWorksheet(wb, "Jaccard_wide"); openxlsx::writeData(wb, "Jaccard_wide", as.data.frame(jaccard_mat))
+    openxlsx::addWorksheet(wb, "Jaccard_long"); openxlsx::writeData(wb, "Jaccard_long", jaccard_long)
+    openxlsx::addWorksheet(wb, "Fisher_all");   openxlsx::writeData(wb, "Fisher_all", pair_df)
+    openxlsx::addWorksheet(wb, "Fisher_sig");   openxlsx::writeData(wb, "Fisher_sig", sig_df)
+    openxlsx::saveWorkbook(wb, file.path(out_dir, "cooccurrence_results.xlsx"), overwrite = TRUE)
+  } else {
+    message("Excel export skipped (install.packages('openxlsx') to enable).")
+  }
+}
+
+## ---------------- 5) Optional heatmap (top-N modules) ----------------
+if (make_heatmap) {
+  prev <- colSums(X)
+  ord  <- order(prev, decreasing = TRUE)
+  keep <- bgc_names[ord][seq_len(min(heatmap_top_n, length(bgc_names)))]
+  J <- jaccard_mat[keep, keep, drop = FALSE]
+  
+  if (requireNamespace("ggplot2", quietly = TRUE)) {
+    library(ggplot2)
+    dfJ <- as.data.frame(as.table(J), stringsAsFactors = FALSE)
+    names(dfJ) <- c("row","col","value")
+    dfJ$row <- factor(dfJ$row, levels = rownames(J))
+    dfJ$col <- factor(dfJ$col, levels = colnames(J))
+    
+    # palette: blues + black at max; no borders; 30° x labels
+    pal_cols   <- c("#f7fbff", "#c6dbef", "#6baed6", "#08306b", "#000000")
+    pal_values <- c(0.00,      0.25,      0.50,      0.85,      1.00)
+    
+    p <- ggplot(dfJ, aes(x = col, y = row, fill = value)) +
+      geom_tile(color = NA) +
+      scale_fill_gradientn(
+        colours = pal_cols,
+        values  = pal_values,
+        limits  = c(0, 1),
+        na.value = "grey90",
+        name    = "Jaccard"
+      ) +
+      coord_fixed() +
+      scale_x_discrete(expand = c(0, 0)) +
+      scale_y_discrete(expand = c(0, 0)) +
+      labs(
+        title = paste0("Jaccard (Top ", length(keep), " by prevalence)"),
+        x = "Module", y = "Module"
+      ) +
+      theme_minimal(base_size = 12) +
+      theme(
+        axis.text.x  = element_text(angle = 90, hjust = 1, vjust = 1),
+        plot.title   = element_text(hjust = 0.5, face = "bold"),
+        axis.title.x = element_text(face = "bold"),
+        axis.title.y = element_text(face = "bold")
+      )
+    
+    ggsave(file.path(out_dir, heatmap_file), p, width = 8, height = 6, dpi = 300)
+  } else {
+    message("Heatmap skipped (ggplot2 not installed).")
+  }
+}
+
+message("Done. Results saved under: ", normalizePath(out_dir))
