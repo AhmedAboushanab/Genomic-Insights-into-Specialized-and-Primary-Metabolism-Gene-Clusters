@@ -1,0 +1,54 @@
+=== Logistic: presence(NIS) ~ CC + Genome_size ===
+
+Call:
+stats::glm(formula = form, family = stats::binomial(), data = d)
+
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)
+(Intercept)    21.5690  7536.0503   0.003    0.998
+CCCC1           0.6185  9273.5450   0.000    1.000
+CCCC121       -17.8569  7536.0504  -0.002    0.998
+CCCC15          0.6935 10907.0764   0.000    1.000
+CCCC22          0.4574 13238.2001   0.000    1.000
+CCCC30          0.4489 17924.1149   0.000    1.000
+CCCC5         -19.3879  7536.0504  -0.003    0.998
+CCCC8         -18.3137  7536.0504  -0.002    0.998
+CCUD            0.7514 10786.9378   0.000    1.000
+Genome_size     2.2031     1.8790   1.173    0.241
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 27.852  on 115  degrees of freedom
+Residual deviance: 18.990  on 106  degrees of freedom
+AIC: 38.99
+
+Number of Fisher Scoring iterations: 20
+
+
+=== Logistic: presence(Metallophore) ~ CC + Genome_size ===
+
+Call:
+stats::glm(formula = form, family = stats::binomial(), data = d)
+
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)
+(Intercept)    21.5690  7536.0503   0.003    0.998
+CCCC1           0.6185  9273.5450   0.000    1.000
+CCCC121       -17.8569  7536.0504  -0.002    0.998
+CCCC15          0.6935 10907.0764   0.000    1.000
+CCCC22          0.4574 13238.2001   0.000    1.000
+CCCC30          0.4489 17924.1149   0.000    1.000
+CCCC5         -19.3879  7536.0504  -0.003    0.998
+CCCC8         -18.3137  7536.0504  -0.002    0.998
+CCUD            0.7514 10786.9378   0.000    1.000
+Genome_size     2.2031     1.8790   1.173    0.241
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 27.852  on 115  degrees of freedom
+Residual deviance: 18.990  on 106  degrees of freedom
+AIC: 38.99
+
+Number of Fisher Scoring iterations: 20
+
+
