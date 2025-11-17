@@ -1,12 +1,10 @@
 ## =========================================
 ## Fisher: BGC type vs CC (each CC vs Others)
 ## Heatmap of log2(OR) with asterisks for q<0.05
-## Custom palette includes: #deebf7, #4292c6, #000000 (+ white, orange)
+## Color scale: BLUE (low) → BLACK (high)
 ## =========================================
 
-# Install once if needed:
-# install.packages(c("ggplot2","dplyr","tidyr"))
-
+# install.packages(c("ggplot2","dplyr","tidyr"))  # if needed
 library(ggplot2)
 library(dplyr)
 library(tidyr)
@@ -35,7 +33,7 @@ colnames(bgc_mat) <- trimws(colnames(bgc_mat))
 # Totals per CC
 total_per_cc <- rowSums(bgc_mat, na.rm = TRUE)
 
-## 2) Fisher tests (index-based to avoid name mismatches)
+## 2) Fisher tests (index-based)
 res_list <- list()
 n_cc  <- nrow(bgc_mat)
 n_bgc <- ncol(bgc_mat)
@@ -60,7 +58,7 @@ for (ri in seq_len(n_cc)) {
     ft <- fisher.test(tab)
     or <- if (is.null(ft$estimate)) NA_real_ else unname(ft$estimate)
     
-    # Safe log2(OR) with capping (treat 0 -> -cap, Inf -> +cap for display)
+    # Safe log2(OR) with capping (0 -> -cap for display; Inf -> +cap)
     l2 <- suppressWarnings(log2(or))
     if (!is.finite(l2)) {
       if (is.finite(or) && or == 0)      l2 <- -cap
@@ -101,23 +99,26 @@ res_df$BGC_type <- factor(
     pull(BGC_type)
 )
 
-## 4) Custom color palette
-## Include: "#deebf7" (light blue), "#4292c6" (mid blue), "#000000" (black)
-## Add white at 0 (neutral) and orange for moderate enrichment
-pal_breaks <- c(-cap, -1, 0, 2, cap)  # positions (on log2 OR scale)
-pal_vals   <- (pal_breaks + cap) / (2*cap)  # rescale to [0,1] without extra pkgs
-pal_cols   <- c("#4292c6", "#deebf7", "#FFFFFF", "#fdae6b", "#000000")
+## 4) Blue → Black palette (monotone)
+## -cap maps to BLUE, +cap maps to BLACK, 0 is a mid blue/charcoal in between.
+pal_cols <- c("#deebf7", "#4292c6", "#000000")  # light blue → blue → black
+pal_vals <- c(0, 0.5, 1)                        # positions across [-cap, +cap], set below
+
+# Choose asterisk color that adapts to background: white for positive (darker), black for negative/near-zero
+res_df$label_col <- ifelse(res_df$log2_or_capped > 0, "white", "black")
 
 ## 5) Heatmap
 ggplot(res_df, aes(x = CC, y = BGC_type, fill = log2_or_capped)) +
-  geom_tile(color = "white") +
-  # Asterisks for q<0.05; white to be visible on dark tiles
-  geom_text(aes(label = star), color = "white", size = 4) +
+  # No borders; cleaner look against dark squares
+  geom_tile(color = NA) +
+  # Asterisks for q<0.05 with adaptive color
+  geom_text(aes(label = star, color = label_col), size = 4) +
+  scale_color_identity(guide = "none") +
   scale_fill_gradientn(
     name   = "log2(OR)",
-    colors = pal_cols,
-    values = pal_vals,
-    limits = c(-cap, cap),
+    colours = pal_cols,
+    values  = pal_vals,
+    limits  = c(-cap, cap),
     na.value = "grey90"
   ) +
   theme_minimal(base_size = 12) +
@@ -134,4 +135,4 @@ ggplot(res_df, aes(x = CC, y = BGC_type, fill = log2_or_capped)) +
   )
 
 ## (Optional) write results
-write.csv(res_df, "fisher_cc_vs_others_results.csv", row.names = FALSE)
+# write.csv(res_df, "fisher_cc_vs_others_results.csv", row.names = FALSE)
